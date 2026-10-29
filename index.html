@@ -40,6 +40,23 @@
             box-shadow: 0 0 0 2px rgba(26, 54, 93, 0.15);
         }
 
+        /* Inputs embutidos no texto dos termos */
+        .inline-input {
+            border: 1px dashed #94a3b8;
+            background: #f8fafc;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #0f172a;
+            transition: all 0.2s;
+        }
+        .inline-input:focus {
+            background: #ffffff;
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(26, 54, 93, 0.15);
+        }
+
         /* Estilos Específicos do Memorando */
         .currency-mask { text-align: right; font-weight: 600; }
         .valor-input { border: none; background: transparent; width: 100%; padding: 2px 4px; text-align: right; }
@@ -70,6 +87,7 @@
                 padding: 0 !important;
                 margin: 0 !important;
                 width: 100% !important;
+                border: none !important;
             }
             .form-page.hidden {
                 display: none !important;
@@ -81,6 +99,13 @@
                 padding: 1px 2px !important;
                 background: transparent !important;
                 font-size: 10px !important;
+            }
+            .inline-input {
+                border: none !important;
+                border-bottom: 1px solid #000 !important;
+                background: transparent !important;
+                padding: 0 2px !important;
+                border-radius: 0 !important;
             }
             textarea {
                 border: 1px solid #666 !important;
@@ -108,10 +133,10 @@
 
     <!-- MENU LATERAL (SIDEBAR) -->
     <aside id="sidebar" class="w-64 bg-slate-900 text-white min-h-screen flex flex-col no-print transition-all duration-300 fixed z-30">
-        <!-- Topo da Sidebar -->
+        <!-- Topo da Sidebar com a logo -->
         <div class="p-4 border-b border-slate-800 flex items-center justify-between">
             <div class="flex items-center space-x-2">
-                <span class="text-xl font-bold tracking-wider text-red-500">AUTOMAX</span>
+                <img src=".\logo.png" alt="Logo Grupo Automax" class="w-30 h-30 object-contain">
             </div>
             <button onclick="toggleSidebar()" class="text-slate-400 hover:text-white lg:hidden">
                 ✕
@@ -369,16 +394,16 @@
 
                 <div class="text-[12px] text-justify space-y-3 leading-relaxed">
                     <p>
-                        Eu, <input type="text" class="input-std inline-block font-semibold uppercase" style="width: 280px;" value="MARLENE CORREA DA SILVA">, 
-                        portador(a) do CPF nº <input type="text" class="input-std inline-block font-semibold" style="width: 140px;" value="607.100.476-49">, 
-                        com endereço na Cidade de <input type="text" class="input-std inline-block uppercase" style="width: 160px;" value="BELO HORIZONTE">, 
-                        <input type="text" class="input-std inline-block uppercase" style="width: 380px;" value="AVENIDA RAJA GABAGLIA – N° 2000 - ESTORIL">, 
-                        CEP <input type="text" class="input-std inline-block" style="width: 100px;" value="30494-170">, 
-                        autorizo o Sr(a) <input type="text" class="input-std inline-block font-semibold uppercase" style="width: 260px;" value="VANDERLEI ROSA RIBEIRO JUNIOR">, 
-                        portador do CNPJ/CPF <input type="text" class="input-std inline-block font-semibold" style="width: 150px;" value="737.426.196-91">, 
+                        Eu, <input type="text" class="inline-input font-semibold uppercase" style="width: 280px;" placeholder="NOME DO CLIENTE / AUTORIZANTE">, 
+                        portador(a) do CPF nº <input type="text" class="inline-input font-semibold" style="width: 140px;" placeholder="000.000.000-00">, 
+                        com endereço na Cidade de <input type="text" class="inline-input uppercase" style="width: 150px;" placeholder="CIDADE">, 
+                        <input type="text" class="inline-input uppercase" style="width: 380px;" placeholder="ENDEREÇO COMPLETO">, 
+                        CEP <input type="text" class="inline-input" style="width: 90px;" placeholder="00000-000">, 
+                        autorizo o Sr(a) <input type="text" class="inline-input font-semibold uppercase" style="width: 260px;" placeholder="NOME DO AUTORIZADO">, 
+                        portador do CNPJ/CPF <input type="text" class="inline-input font-semibold" style="width: 140px;" placeholder="000.000.000-00">, 
                         a retirar da sede da <strong>AUTOMAX COMERCIAL LTDA</strong>, localizada na Av. Raja Gabáglia, nº 2222 - Bairro Estoril e/ou Rua Padre Pedro Evangelista, nº 44 - C. Eucarístico – Belo Horizonte, o veículo 
-                        <input type="text" class="input-std inline-block font-bold uppercase" style="width: 220px;" value="PULSE DRIVE 1.3 AUT">, 
-                        CHASSIS <input type="text" class="input-std inline-block font-mono uppercase font-bold" style="width: 220px;" value="9BD363A1JSYS73497">, 
+                        <input type="text" class="inline-input font-bold uppercase" style="width: 200px;" placeholder="MODELO DO VEÍCULO">, 
+                        CHASSIS <input type="text" class="inline-input font-mono uppercase font-bold" style="width: 200px;" placeholder="CHASSI DO VEÍCULO">, 
                         emitida pela empresa <strong>AUTOMAX FIAT</strong>, isentando a concessionária de toda e qualquer responsabilidade seja civil, tributária e criminal que venha a recair sobre o veículo após a retirada do mesmo da sede da concessionária.
                     </p>
 
@@ -395,7 +420,7 @@
                     </p>
 
                     <p class="pt-2 font-semibold">
-                        Belo Horizonte / MG, <input type="date" id="data-autorizacao" class="input-std inline-block font-bold" style="width: 140px;">.
+                        Belo Horizonte / MG, <input type="date" id="data-autorizacao" class="inline-input font-bold" style="width: 140px;">.
                     </p>
                 </div>
 
@@ -412,7 +437,7 @@
                     <div class="col-span-12 font-bold uppercase text-slate-800">Dados da Retirada pelo Autorizado:</div>
                     <div class="col-span-6 flex items-center space-x-2">
                         <span>Data da Retirada:</span>
-                        <input type="date" class="input-std">
+                        <input type="date" id="data-retirada" class="input-std">
                     </div>
                     <div class="col-span-6 flex items-center space-x-2">
                         <span>Horário:</span>
@@ -434,8 +459,8 @@
                 </div>
             </div>
 
-            <!-- FORMULÁRIO 3: AUTORIZAÇÃO PARA PAGAMENTO PARCIAL DE VEÍCULO DE TERCEIRO -->
-            <div id="form-pagamento" class="form-page hidden w-full max-w-[210mm] bg-white p-6 md:p-8 rounded-lg shadow-md border border-gray-200">
+            <!-- FORMULÁRIO 3: AUTORIZAÇÃO PARA PAGAMENTO PARCIAL DE VEÍCULO DE TERCEIRO (SEM BORDA EXTERNA) -->
+            <div id="form-pagamento" class="form-page hidden w-full max-w-[210mm] bg-white p-6 md:p-8">
                 <!-- Cabeçalho -->
                 <div class="flex items-center space-x-4 border-b-2 border-slate-900 pb-3 mb-6">
                     <img src=".\logo.png" alt="Logo Grupo Automax" class="w-30 h-30 object-contain">
@@ -449,23 +474,23 @@
                 <!-- Corpo do Texto -->
                 <div class="text-[13px] text-justify space-y-4 leading-relaxed my-6">
                     <p>
-                        Eu, <input type="text" class="input-std inline-block font-semibold uppercase" style="width: 320px;" value="OTAVIO SILVA BARBOSA RODRIGUES DE AGUIAR">, 
-                        portador(a) do CPF nº <input type="text" class="input-std inline-block font-semibold" style="width: 150px;" value="087.202.796-12">, 
+                        Eu, <input type="text" id="pagto-nome-autorizante" class="inline-input font-semibold uppercase" style="width: 320px;" placeholder="NOME DO AUTORIZANTE">, 
+                        portador(a) do CPF nº <input type="text" class="inline-input font-semibold" style="width: 140px;" placeholder="000.000.000-00">, 
                         autorizo a empresa <strong>AUTOMAX COMERCIAL LTDA</strong>, inscrita no CNPJ n° <strong>20.994.976/0001-34</strong> e/ou <strong>20.994.976/0004-87</strong>, a quitar parte do veículo da 
-                        Marca <input type="text" class="input-std inline-block font-semibold uppercase" style="width: 100px;" value="FIAT">, 
-                        Modelo <input type="text" class="input-std inline-block font-semibold uppercase" style="width: 200px;" value="PULSE AUDACE"> – 
-                        Ano <input type="text" class="input-std inline-block text-center" style="width: 80px;" value="23/23">, 
-                        Cor <input type="text" class="input-std inline-block uppercase" style="width: 100px;" value="PRETO">, 
-                        Chassis <input type="text" class="input-std inline-block font-mono uppercase font-semibold" style="width: 160px;" value="YZ92271">, 
-                        compra e venda realizada em <input type="date" class="input-std inline-block text-center" style="width: 130px;" value="2023-05-19">, 
-                        em nome de <input type="text" class="input-std inline-block font-semibold uppercase" style="width: 300px;" value="SERVIO GALBA RODRIGUES DE AGUIAR">, 
-                        CPF/CNPJ nº <input type="text" class="input-std inline-block font-semibold" style="width: 150px;" value="581.726.616-49">.
+                        Marca <input type="text" class="inline-input font-semibold uppercase" style="width: 90px;" placeholder="MARCA">, 
+                        Modelo <input type="text" class="inline-input font-semibold uppercase" style="width: 180px;" placeholder="MODELO DO VEÍCULO"> – 
+                        Ano <input type="text" class="inline-input text-center" style="width: 70px;" placeholder="00/00">, 
+                        Cor <input type="text" class="inline-input uppercase" style="width: 90px;" placeholder="COR">, 
+                        Chassis <input type="text" class="inline-input font-mono uppercase font-semibold" style="width: 150px;" placeholder="CHASSI">, 
+                        compra e venda realizada em <input type="date" class="inline-input text-center" style="width: 130px;">, 
+                        em nome de <input type="text" class="inline-input font-semibold uppercase" style="width: 280px;" placeholder="NOME DO COMPRADOR">, 
+                        CPF/CNPJ nº <input type="text" class="inline-input font-semibold" style="width: 140px;" placeholder="000.000.000-00">.
                     </p>
 
                     <p>
-                        Pagamento parcial no valor de <input type="text" class="input-std currency-mask inline-block font-extrabold text-blue-900" style="width: 130px;" value="1.000,00"> 
-                        (<input type="text" class="input-std inline-block uppercase font-semibold" style="width: 200px;" value="UM MIL REAIS">), 
-                        depositado na conta da Automax em <input type="date" class="input-std inline-block text-center" style="width: 130px;" value="2023-05-19">.
+                        Pagamento parcial no valor de R$ <input type="text" class="inline-input currency-mask font-extrabold text-blue-900" style="width: 110px;" placeholder="0,00"> 
+                        (<input type="text" class="inline-input uppercase font-semibold" style="width: 220px;" placeholder="VALOR POR EXTENSO">), 
+                        depositado na conta da Automax em <input type="date" class="inline-input text-center" style="width: 130px;">.
                     </p>
 
                     <p>
@@ -477,14 +502,14 @@
                     </p>
 
                     <p class="pt-4 font-semibold text-right">
-                        Belo Horizonte / MG, <input type="date" id="data-pagamento-terceiro" class="input-std inline-block font-bold" style="width: 140px;">.
+                        Belo Horizonte / MG, <input type="date" id="data-pagamento-terceiro" class="inline-input font-bold text-center" style="width: 140px;">.
                     </p>
                 </div>
 
                 <!-- Assinatura -->
                 <div class="mt-16 text-center page-break-avoid">
                     <div class="w-96 mx-auto border-t border-slate-800 pt-2">
-                        <input type="text" class="input-std text-center font-bold uppercase border-none bg-transparent" value="OTAVIO SILVA BARBOSA RODRIGUES DE AGUIAR" placeholder="Nome do Assinante">
+                        <input type="text" id="pagto-assinatura-nome" class="inline-input text-center font-bold uppercase w-full" placeholder="NOME DO ASSINANTE">
                         <div class="text-xs text-slate-500 mt-1">Nome e Assinatura do Assinante</div>
                     </div>
                 </div>
@@ -495,10 +520,22 @@
 
     <!-- SCRIPT DE NAVEGAÇÃO E LÓGICA -->
     <script>
-        // Datas atuais para formulários
+        // Datas atuais automáticas (Hoje)
         const hoje = new Date();
-        document.getElementById('data-autorizacao').valueAsDate = hoje;
-        document.getElementById('data-pagamento-terceiro').valueAsDate = hoje;
+        const dataHojeStr = hoje.toISOString().split('T')[0];
+        
+        document.getElementById('data-autorizacao').value = dataHojeStr;
+        document.getElementById('data-retirada').value = dataHojeStr;
+        document.getElementById('data-pagamento-terceiro').value = dataHojeStr;
+
+        // Sincronizar nome do autorizante com o campo de assinatura no Formulário 3
+        const inputNomeAut = document.getElementById('pagto-nome-autorizante');
+        const inputNomeAss = document.getElementById('pagto-assinatura-nome');
+        if (inputNomeAut && inputNomeAss) {
+            inputNomeAut.addEventListener('input', function() {
+                inputNomeAss.value = this.value;
+            });
+        }
 
         // Alternar Formulários
         function showForm(formId) {
@@ -509,7 +546,6 @@
             const btnPag = document.getElementById('nav-pagamento');
             const title = document.getElementById('page-title');
 
-            // Reset classes dos botões
             const inactiveClass = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition";
             const activeClass = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition bg-blue-700 text-white shadow";
 
