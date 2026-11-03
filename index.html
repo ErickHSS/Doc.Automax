@@ -514,6 +514,176 @@
                     </div>
                 </div>
             </div>
+<!-- FORMULÁRIO 4: CHECKLIST AUTUAÇÕES E PENDÊNCIAS DE VEÍCULO -->
+            <div id="form-checklist" class="form-page hidden w-full max-w-[210mm] bg-white p-6 md:p-8 rounded-lg shadow-md border border-gray-200">
+                <!-- Cabeçalho -->
+                <div class="flex items-center justify-between border-b-2 border-slate-900 pb-3 mb-4">
+                    <div class="flex items-center space-x-3">
+                        <img src=".\logo.png" alt="Logo Grupo Automax" class="w-30 h-30 object-contain">
+                        <span class="font-extrabold text-slate-900 text-lg">AUTOMAX</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-xs">
+                        <span class="font-bold text-slate-700">DATA:</span>
+                        <input type="date" id="data-checklist" class="input-std text-center" style="width: 130px;">
+                    </div>
+                </div>
+
+                <!-- Identificação do Veículo -->
+                <div class="grid grid-cols-12 gap-3 mb-4 text-xs">
+                    <div class="col-span-6 md:col-span-4">
+                        <label class="block font-bold text-slate-700 uppercase">PLACA:</label>
+                        <input type="text" class="input-std font-mono font-bold uppercase" placeholder="ABC1D23">
+                    </div>
+                    <div class="col-span-6 md:col-span-4">
+                        <label class="block font-bold text-slate-700 uppercase">VENDEDOR:</label>
+                        <input type="text" class="input-std uppercase" placeholder="NOME DO VENDEDOR">
+                    </div>
+                    <div class="col-span-6 md:col-span-4">
+                        <label class="block font-bold text-slate-700 uppercase">UF:</label>
+                        <input type="text" class="input-std text-center uppercase" placeholder="MG">
+                    </div>
+                    <div class="col-span-6 md:col-span-4">
+                        <label class="block font-bold text-slate-700 uppercase">ANO / MODELO:</label>
+                        <input type="text" class="input-std text-center" placeholder="2024 / 2025">
+                    </div>
+                    <div class="col-span-6 md:col-span-4">
+                        <label class="block font-bold text-slate-700 uppercase">COR:</label>
+                        <input type="text" class="input-std uppercase" placeholder="COR DO VEÍCULO">
+                    </div>
+                    <div class="col-span-6 md:col-span-4">
+                        <label class="block font-bold text-slate-700 uppercase">MARCA / MODELO:</label>
+                        <input type="text" class="input-std uppercase" placeholder="EX: VW/SAVEIRO CD EX">
+                    </div>
+                    
+                    <!-- Combustível -->
+                    <div class="col-span-12 border border-slate-200 p-2 rounded bg-slate-50 flex items-center space-x-6">
+                        <span class="font-bold text-slate-700 uppercase">COMBUSTÍVEL:</span>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>GASOLINA</span></label>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>ÁLCOOL</span></label>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>FLEX</span></label>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>DIESEL</span></label>
+                    </div>
+                </div>
+
+                <!-- Documentos / Impostos -->
+                <div class="border border-slate-300 rounded p-3 mb-4 text-xs">
+                    <h3 class="font-extrabold text-slate-900 border-b border-slate-300 pb-1 mb-2 uppercase">DOCUMENTOS / IMPOSTOS</h3>
+                    <div class="grid grid-cols-12 gap-3">
+                        <div class="col-span-6 flex items-center space-x-2">
+                            <span class="font-bold text-slate-700">CRLV (DUT) ANO:</span>
+                            <input type="text" class="input-std text-center" style="width: 80px;" placeholder="2026">
+                        </div>
+                        <div class="col-span-6 flex items-center space-x-4">
+                            <span class="font-bold text-slate-700">SEGURO OBRIGATÓRIO:</span>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>PAGO</span></label>
+                        </div>
+                        <div class="col-span-12 flex items-center space-x-2">
+                            <span class="font-bold text-slate-700">OBS SEGURO:</span>
+                            <input type="text" class="input-std flex-1" placeholder="Observações do seguro...">
+                        </div>
+                        <div class="col-span-12 flex flex-wrap items-center gap-3 border-t border-slate-100 pt-2">
+                            <span class="font-bold text-slate-700">IPVA PAGO:</span>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>1ª</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>2ª</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>3ª</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>TOTAL</span></label>
+                            <span class="font-bold text-slate-700 ml-4">OBS IPVA:</span>
+                            <input type="text" class="input-std flex-1" style="min-width: 120px;" placeholder="Ex: 2026">
+                        </div>
+                        <div class="col-span-12 flex items-center space-x-3 border-t border-slate-100 pt-2">
+                            <span class="font-bold text-slate-700">TAXA DE LICENCIAMENTO:</span>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>PAGO</span></label>
+                            <span class="font-bold text-slate-700 ml-4">OBS LICENCIAMENTO:</span>
+                            <input type="text" class="input-std flex-1" placeholder="Ex: 2026">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Multa / Autuação -->
+                <div class="border border-slate-300 rounded p-3 mb-4 text-xs">
+                    <h3 class="font-extrabold text-slate-900 border-b border-slate-300 pb-1 mb-2 uppercase">MULTA / AUTUAÇÃO</h3>
+                    <div class="grid grid-cols-12 gap-2">
+                        <div class="col-span-12 md:col-span-6 flex items-center space-x-2">
+                            <span class="font-bold text-slate-700 w-24">PREFEITURA:</span>
+                            <input type="text" class="input-std flex-1" placeholder="Ex: 01 AUTUAÇÃO R$ 130,16">
+                        </div>
+                        <div class="col-span-12 md:col-span-6 flex items-center space-x-2">
+                            <span class="font-bold text-slate-700 w-24">DNIT:</span>
+                            <input type="text" class="input-std flex-1" placeholder="NADA CONSTA / DETALHES">
+                        </div>
+                        <div class="col-span-12 md:col-span-6 flex items-center space-x-2">
+                            <span class="font-bold text-slate-700 w-24">PRF:</span>
+                            <input type="text" class="input-std flex-1" placeholder="NADA CONSTA / DETALHES">
+                        </div>
+                        <div class="col-span-12 md:col-span-6 flex items-center space-x-2">
+                            <span class="font-bold text-slate-700 w-24">DER:</span>
+                            <input type="text" class="input-std flex-1" placeholder="NADA CONSTA / DETALHES">
+                        </div>
+                        <div class="col-span-12 md:col-span-6 flex items-center space-x-2">
+                            <span class="font-bold text-slate-700 w-24">RENAINF:</span>
+                            <input type="text" class="input-std flex-1" placeholder="NADA CONSTA / DETALHES">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restrições -->
+                <div class="border border-slate-300 rounded p-3 mb-4 text-xs">
+                    <h3 class="font-extrabold text-slate-900 border-b border-slate-300 pb-1 mb-2 uppercase">RESTRIÇÕES</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mb-3">
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>RESERVA DE ALIENAÇÃO / DOMÍNIO</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>ALIENAÇÃO FIDUCIÁRIA</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>LEASING</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>COMUNICADO DE VENDA ATIVO</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>CONSÓRCIO</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span class="font-bold text-green-700">NENHUMA</span></label>
+                    </div>
+                    <div class="grid grid-cols-12 gap-2">
+                        <div class="col-span-6 flex items-center space-x-2">
+                            <span class="font-bold text-slate-700">BANCO:</span>
+                            <input type="text" class="input-std flex-1" placeholder="NOME DO BANCO">
+                        </div>
+                        <div class="col-span-6 flex items-center space-x-2">
+                            <span class="font-bold text-slate-700">OBS RESTRIÇÃO:</span>
+                            <input type="text" class="input-std flex-1" placeholder="OBSERVAÇÕES ADICIONAIS">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dados Adicionais & Despachante Responsável -->
+                <div class="border border-slate-300 rounded p-3 mb-4 text-xs space-y-3">
+                    <div class="grid grid-cols-12 gap-3">
+                        <div class="col-span-6 flex items-center space-x-2">
+                            <span class="font-bold text-slate-700">CLIENTE:</span>
+                            <input type="text" class="input-std flex-1 uppercase" placeholder="NOME DO CLIENTE">
+                        </div>
+                        <div class="col-span-6 flex items-center space-x-2">
+                            <span class="font-bold text-slate-700">VEÍCULO:</span>
+                            <input type="text" class="input-std flex-1 uppercase" placeholder="NOME / PLACA DO VEÍCULO">
+                        </div>
+                    </div>
+                    <div class="border-t border-slate-200 pt-2">
+                        <span class="font-bold text-slate-700 block mb-1">DESPACHANTE RESPONSÁVEL:</span>
+                        <div class="flex flex-wrap items-center gap-4">
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>LÉO</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>DANIEL</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>JULIO</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>PAULO</span></label>
+                            <div class="flex items-center space-x-1 flex-1">
+                                <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>OUTRO:</span></label>
+                                <input type="text" class="input-std flex-1" placeholder="Nome do despachante">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assinatura -->
+                <div class="mt-8 text-center page-break-avoid">
+                    <div class="w-80 mx-auto border-t border-slate-800 pt-1">
+                        <input type="text" class="input-std text-center font-bold uppercase border-none bg-transparent" placeholder="NOME DO RESPONSÁVEL">
+                        <div class="text-[10px] text-slate-500">Assinatura do Despachante / Responsável</div>
+                    </div>
+                </div>
+            </div>
 
         </main>
     </div>
@@ -527,6 +697,7 @@
         document.getElementById('data-autorizacao').value = dataHojeStr;
         document.getElementById('data-retirada').value = dataHojeStr;
         document.getElementById('data-pagamento-terceiro').value = dataHojeStr;
+        document.getElementById('data-checklist').value = dataHojeStr;
 
         // Sincronizar nome do autorizante com o campo de assinatura no Formulário 3
         const inputNomeAut = document.getElementById('pagto-nome-autorizante');
@@ -544,6 +715,7 @@
             const btnMem = document.getElementById('nav-memorando');
             const btnAut = document.getElementById('nav-autorizacao');
             const btnPag = document.getElementById('nav-pagamento');
+            const btnChk = document.getElementById('nav-checklist');
             const title = document.getElementById('page-title');
 
             const inactiveClass = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition";
@@ -552,6 +724,7 @@
             btnMem.className = inactiveClass;
             btnAut.className = inactiveClass;
             btnPag.className = inactiveClass;
+            btnChk.className = inactiveClass;
 
             if (formId === 'memorando') {
                 document.getElementById('form-memorando').classList.remove('hidden');
@@ -565,6 +738,10 @@
                 document.getElementById('form-pagamento').classList.remove('hidden');
                 btnPag.className = activeClass;
                 title.textContent = "Autorização para Pagamento Parcial de Veículo de Terceiro";
+            } else if (formId === 'checklist') {
+                document.getElementById('form-checklist').classList.remove('hidden');
+                btnChk.className = activeClass;
+                title.textContent = "Checklist de Autuações e Pendências do Veículo";
             }
         }
 
@@ -582,7 +759,10 @@
             if (!document.getElementById('form-autorizacao').classList.contains('hidden')) {
                 return { element: document.getElementById('form-autorizacao'), name: 'Autorizacao_Entrega_Veiculo_Automax.pdf' };
             }
-            return { element: document.getElementById('form-pagamento'), name: 'Autorizacao_Pagamento_Terceiro_Automax.pdf' };
+            if (!document.getElementById('form-pagamento').classList.contains('hidden')) {
+                return { element: document.getElementById('form-pagamento'), name: 'Autorizacao_Pagamento_Terceiro_Automax.pdf' };
+            }
+            return { element: document.getElementById('form-checklist'), name: 'Checklist_Autuacoes_Automax.pdf' };
         }
 
         // Baixar PDF do Formulário Ativo
