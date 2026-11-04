@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,9 +34,7 @@
             transition: border-color 0.2s;
             background: #ffffff;
         }
-
-        .input-std:focus,
-        textarea:focus {
+        .input-std:focus, textarea:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 2px rgba(26, 54, 93, 0.15);
@@ -53,7 +50,6 @@
             color: #0f172a;
             transition: all 0.2s;
         }
-
         .inline-input:focus {
             background: #ffffff;
             border-color: var(--primary);
@@ -62,50 +58,29 @@
         }
 
         /* Estilos Específicos do Memorando */
-        .currency-mask {
-            text-align: right;
-            font-weight: 600;
-        }
+        .currency-mask { text-align: right; font-weight: 600; }
+        .valor-input { border: none; background: transparent; width: 100%; padding: 2px 4px; text-align: right; }
+        .valor-input:focus { background: #eff6ff; outline: 1px solid var(--primary); border-radius: 2px; }
 
-        .valor-input {
-            border: none;
-            background: transparent;
-            width: 100%;
-            padding: 2px 4px;
-            text-align: right;
-        }
-
-        .valor-input:focus {
-            background: #eff6ff;
-            outline: 1px solid var(--primary);
-            border-radius: 2px;
-        }
-
-        /* REGRAS DE IMPRESSÃO (Compactação para 1 Folha A4) */
+        /* REGRAS DE IMPRESSÃO */
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 4mm 6mm;
+                margin: 8mm 10mm;
             }
-
             body {
                 background: white !important;
                 padding: 0 !important;
-                font-size: 9.5px !important;
+                font-size: 11px !important;
             }
-
-            .no-print,
-            #sidebar,
-            #top-bar {
+            .no-print, #sidebar, #top-bar {
                 display: none !important;
             }
-
             #main-content {
                 margin-left: 0 !important;
                 padding: 0 !important;
                 width: 100% !important;
             }
-
             .form-page {
                 display: block !important;
                 box-shadow: none !important;
@@ -114,22 +89,17 @@
                 width: 100% !important;
                 border: none !important;
             }
-
             .form-page.hidden {
                 display: none !important;
             }
-
-            input,
-            textarea,
-            select {
+            input, textarea, select {
                 border: none !important;
                 border-bottom: 1px solid #000 !important;
                 border-radius: 0 !important;
                 padding: 1px 2px !important;
                 background: transparent !important;
-                font-size: 9.5px !important;
+                font-size: 11px !important;
             }
-
             .inline-input {
                 border: none !important;
                 border-bottom: 1px solid #000 !important;
@@ -137,23 +107,19 @@
                 padding: 0 2px !important;
                 border-radius: 0 !important;
             }
-
             textarea {
                 border: 1px solid #666 !important;
-                height: 28px !important;
+                height: 32px !important;
             }
-
             .checkbox-grid {
                 background: white !important;
                 border: 1px solid #aaa !important;
-                padding: 2px 4px !important;
+                padding: 4px 6px !important;
             }
-
             .page-break-avoid {
                 break-inside: avoid !important;
                 page-break-inside: avoid !important;
             }
-
             th {
                 background-color: #1a365d !important;
                 color: white !important;
@@ -163,12 +129,10 @@
         }
     </style>
 </head>
-
 <body class="min-h-screen flex text-gray-800">
 
     <!-- MENU LATERAL (SIDEBAR) -->
-    <aside id="sidebar"
-        class="w-64 bg-slate-900 text-white min-h-screen flex flex-col no-print transition-all duration-300 fixed z-30">
+    <aside id="sidebar" class="w-64 bg-slate-900 text-white min-h-screen flex flex-col no-print transition-all duration-300 fixed z-30">
         <!-- Topo da Sidebar com a logo -->
         <div class="p-4 border-b border-slate-800 flex items-center justify-between">
             <div class="flex items-center space-x-2">
@@ -184,50 +148,34 @@
             <div class="px-3 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">
                 Formulários
             </div>
-            <button id="nav-memorando" onclick="showForm('memorando')"
-                class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition bg-blue-700 text-white shadow">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                    </path>
-                </svg>
+            <button id="nav-memorando" onclick="showForm('memorando')" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium transition bg-blue-700 text-white shadow">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                 <span class="truncate">1. Memorando Financeiro</span>
             </button>
-            <button id="nav-autorizacao" onclick="showForm('autorizacao')"
-                class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
-                </svg>
+            <button id="nav-autorizacao" onclick="showForm('autorizacao')" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
                 <span class="truncate">2. Autorização Entrega 0KM</span>
             </button>
-            <button id="nav-pagamento" onclick="showForm('pagamento')"
-                class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
-                    </path>
-                </svg>
+            <button id="nav-pagamento" onclick="showForm('pagamento')" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                 <span class="truncate">3. Pagto Parcial Terceiro</span>
             </button>
-            <button id="nav-checklist" onclick="showForm('checklist')"
-                class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
-                    </path>
-                </svg>
+            <button id="nav-checklist" onclick="showForm('checklist')" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
                 <span class="truncate">4. Checklist Autuações</span>
             </button>
-            <a href="https://dealers.vendascorporativas.com.br/" target="_blank" rel="noopener noreferrer"
-                class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
-                    </path>
-                </svg>
-                <span class="truncate">4. Vendas Corporativas</span>
-            </a>
+            <button id="nav-contrato" onclick="showForm('contrato')" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                <span class="truncate">5. Contrato Varejo (Novos)</span>
+            </button>
+            <button id="nav-vendas-diretas" onclick="showForm('vendas-diretas')" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                <span class="truncate">6. Contrato Vendas Diretas</span>
+            </button>
+            <button id="nav-ecommerce" onclick="showForm('ecommerce')" class="w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"></path></svg>
+                <span class="truncate">7. Contrato E-Commerce PSA</span>
+            </button>
         </nav>
 
         <div class="p-4 border-t border-slate-800 text-xs text-slate-400 text-center">
@@ -237,32 +185,23 @@
 
     <!-- CONTEÚDO PRINCIPAL -->
     <div id="main-content" class="flex-1 lg:ml-64 transition-all duration-300 flex flex-col min-h-screen">
-
+        
         <!-- Barra Superior (Apenas Tela) -->
-        <header id="top-bar"
-            class="bg-white border-b border-gray-200 px-6 py-3 flex justify-between items-center no-print sticky top-0 z-20 shadow-sm">
+        <header id="top-bar" class="bg-white border-b border-gray-200 px-6 py-3 flex justify-between items-center no-print sticky top-0 z-20 shadow-sm">
             <div class="flex items-center space-x-3">
-                <button onclick="toggleSidebar()"
-                    class="p-2 rounded-md hover:bg-gray-100 text-gray-600 focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
+                <button onclick="toggleSidebar()" class="p-2 rounded-md hover:bg-gray-100 text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 </button>
-                <h2 id="page-title" class="text-base font-bold text-gray-800">Memorando Financeiro - Programação de
-                    Pagamento</h2>
+                <h2 id="page-title" class="text-base font-bold text-gray-800">Memorando Financeiro - Programação de Pagamento</h2>
             </div>
             <div class="flex items-center space-x-2">
-                <button onclick="limparFormAtual()"
-                    class="px-3 py-1.5 text-xs font-semibold text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition">
+                <button onclick="limparFormAtual()" class="px-3 py-1.5 text-xs font-semibold text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition">
                     🗑️ Limpar
                 </button>
-                <button onclick="baixarPDFAtual()"
-                    class="px-3 py-1.5 text-xs font-semibold text-white bg-green-600 rounded hover:bg-green-700 transition flex items-center space-x-1">
+                <button onclick="baixarPDFAtual()" class="px-3 py-1.5 text-xs font-semibold text-white bg-green-600 rounded hover:bg-green-700 transition flex items-center space-x-1">
                     <span>📥 Baixar PDF</span>
                 </button>
-                <button onclick="window.print()"
-                    class="px-4 py-1.5 text-xs font-bold text-white bg-blue-800 rounded hover:bg-blue-900 transition flex items-center space-x-1 shadow">
+                <button onclick="window.print()" class="px-4 py-1.5 text-xs font-bold text-white bg-blue-800 rounded hover:bg-blue-900 transition flex items-center space-x-1 shadow">
                     <span>🖨️ Imprimir</span>
                 </button>
             </div>
@@ -270,18 +209,15 @@
 
         <!-- ÁREA DOS FORMULÁRIOS -->
         <main class="flex-1 p-4 md:p-6 flex justify-center items-start">
-
+            
             <!-- FORMULÁRIO 1: MEMORANDO FINANCEIRO -->
-            <div id="form-memorando"
-                class="form-page w-full max-w-[210mm] bg-white p-6 md:p-8 rounded-lg shadow-md border border-gray-200">
+            <div id="form-memorando" class="form-page w-full max-w-[210mm] bg-white p-6 md:p-8 rounded-lg shadow-md border border-gray-200">
                 <!-- Cabeçalho -->
                 <div class="flex items-center space-x-4 border-b-2 border-slate-900 pb-3 mb-4">
                     <img src=".\logo.png" alt="Logo Grupo Automax" class="w-30 h-30 object-contain">
                     <div class="flex-1">
-                        <h1
-                            class="text-sm md:text-base font-extrabold text-slate-900 uppercase tracking-wide leading-tight">
-                            MEMORANDO DE SOLICITAÇÃO DE PROGRAMAÇÃO DE PAGAMENTO DE COMPRA/TROCA/QUITAÇÃO DE VEÍCULO
-                            USADOS
+                        <h1 class="text-sm md:text-base font-extrabold text-slate-900 uppercase tracking-wide leading-tight">
+                            MEMORANDO DE SOLICITAÇÃO DE PROGRAMAÇÃO DE PAGAMENTO DE COMPRA/TROCA/QUITAÇÃO DE VEÍCULO USADOS
                         </h1>
                     </div>
                 </div>
@@ -289,8 +225,7 @@
                 <!-- Dados Gerais -->
                 <div class="grid grid-cols-12 gap-3 mb-4 p-3 bg-slate-50 border border-slate-200 rounded">
                     <div class="col-span-12 md:col-span-8">
-                        <label class="block text-[11px] font-bold text-slate-700 uppercase">1. Nome Completo do
-                            Cliente:</label>
+                        <label class="block text-[11px] font-bold text-slate-700 uppercase">1. Nome Completo do Cliente:</label>
                         <input type="text" class="input-std font-semibold" placeholder="Digite o nome do cliente">
                     </div>
                     <div class="col-span-12 md:col-span-4">
@@ -298,13 +233,11 @@
                         <input type="text" class="input-std" placeholder="000.000.000-00">
                     </div>
                     <div class="col-span-6 md:col-span-6">
-                        <label class="block text-[10px] font-semibold text-slate-600 uppercase">Nº Nota Fiscal de
-                            Compra:</label>
+                        <label class="block text-[10px] font-semibold text-slate-600 uppercase">Nº Nota Fiscal de Compra:</label>
                         <input type="text" class="input-std">
                     </div>
                     <div class="col-span-6 md:col-span-6">
-                        <label class="block text-[10px] font-semibold text-slate-600 uppercase">Nota Fiscal de
-                            Entrada:</label>
+                        <label class="block text-[10px] font-semibold text-slate-600 uppercase">Nota Fiscal de Entrada:</label>
                         <input type="text" class="input-std">
                     </div>
                     <div class="col-span-4 md:col-span-3">
@@ -312,8 +245,7 @@
                         <input type="date" class="input-std">
                     </div>
                     <div class="col-span-8 md:col-span-5">
-                        <label class="block text-[10px] font-semibold text-slate-600 uppercase">Veículo - Ano Modelo -
-                            Entrega:</label>
+                        <label class="block text-[10px] font-semibold text-slate-600 uppercase">Veículo - Ano Modelo - Entrega:</label>
                         <input type="text" class="input-std" placeholder="Ex: Pulse 1.3 2023 - 10/11">
                     </div>
                     <div class="col-span-12 md:col-span-4">
@@ -328,20 +260,13 @@
                         Solicitação Programação de Pagto na Entrada de Veículos Usados:
                     </div>
                     <div class="checkbox-grid grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
-                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>Pagamento de Boleto – Quitação</span></label>
-                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>Devolução de Sinal de Negócio</span></label>
-                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>Pagamento IPVA Veículo Novo</span></label>
-                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>Troca de Veículos Novos</span></label>
-                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>Troca de Veículos Usados</span></label>
-                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>Compra de Usados</span></label>
-                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>Pagamento de Venda Direta</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>Pagamento de Boleto – Quitação</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>Devolução de Sinal de Negócio</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>Pagamento IPVA Veículo Novo</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>Troca de Veículos Novos</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>Troca de Veículos Usados</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>Compra de Usados</span></label>
+                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>Pagamento de Venda Direta</span></label>
                     </div>
                     <div class="grid grid-cols-2 gap-4 mt-3 pt-2 border-t border-slate-200">
                         <div class="flex items-center space-x-2">
@@ -362,130 +287,35 @@
                             <tr class="bg-slate-900 text-white">
                                 <th class="border border-slate-700 px-2 py-1 text-left w-32">CATEGORIA</th>
                                 <th class="border border-slate-700 px-1 py-1 text-center w-8">ITEM</th>
-                                <th class="border border-slate-700 px-2 py-1 text-left">DESCRIÇÃO DA OPERAÇÃO / DESPESA
-                                </th>
+                                <th class="border border-slate-700 px-2 py-1 text-left">DESCRIÇÃO DA OPERAÇÃO / DESPESA</th>
                                 <th class="border border-slate-700 px-2 py-1 text-right w-32">VALOR (R$)</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-200">
-                            <tr>
-                                <td rowspan="4"
-                                    class="border border-slate-300 px-2 py-1 font-bold bg-slate-50 align-top">OPERAÇÃO
-                                </td>
-                                <td class="border border-slate-300 text-center font-bold">A</td>
-                                <td class="border border-slate-300 px-2">VALOR PARTE PGTO PEDIDO DE VENDA</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-slate-300 text-center font-bold">B</td>
-                                <td class="border border-slate-300 px-2">VALOR DEPOSITO CLIENTE</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-slate-300 text-center font-bold">C</td>
-                                <td class="border border-slate-300 px-2">VALOR QUITAÇÃO FINANCIAMENTO</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-slate-300 text-center font-bold">D</td>
-                                <td class="border border-slate-300 px-2">VALOR PARCELA VENCIDA FINANCIAMENTO</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
+                            <tr><td rowspan="4" class="border border-slate-300 px-2 py-1 font-bold bg-slate-50 align-top">OPERAÇÃO</td><td class="border border-slate-300 text-center font-bold">A</td><td class="border border-slate-300 px-2">VALOR PARTE PGTO PEDIDO DE VENDA</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
+                            <tr><td class="border border-slate-300 text-center font-bold">B</td><td class="border border-slate-300 px-2">VALOR DEPOSITO CLIENTE</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
+                            <tr><td class="border border-slate-300 text-center font-bold">C</td><td class="border border-slate-300 px-2">VALOR QUITAÇÃO FINANCIAMENTO</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
+                            <tr><td class="border border-slate-300 text-center font-bold">D</td><td class="border border-slate-300 px-2">VALOR PARCELA VENCIDA FINANCIAMENTO</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
+                            
+                            <tr><td rowspan="6" class="border border-slate-300 px-2 py-1 font-bold bg-slate-50 align-top">PENDÊNCIAS LEGALIZAÇÃO</td><td class="border border-slate-300 text-center font-bold">E</td><td class="border border-slate-300 px-2">VALOR P/ PAGTO IPVA</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
+                            <tr><td class="border border-slate-300 text-center font-bold">F</td><td class="border border-slate-300 px-2">VALOR P/ PAGTO PROCEMAX</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
+                            <tr><td class="border border-slate-300 text-center font-bold">G</td><td class="border border-slate-300 px-2">VALOR P/ PAGTO AUTUAÇÃO E MULTA</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
+                            <tr><td class="border border-slate-300 text-center font-bold">H</td><td class="border border-slate-300 px-2">VALOR P/ PAGTO LICENCIAMENTO</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
+                            <tr><td class="border border-slate-300 text-center font-bold">I</td><td class="border border-slate-300 px-2">VALOR P/ PAGTO CHAVE RESERVA</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
+                            <tr><td class="border border-slate-300 text-center font-bold">J</td><td class="border border-slate-300 px-2">VALOR P/ PAGTO CARTAO DE CARTORIO</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
 
-                            <tr>
-                                <td rowspan="6"
-                                    class="border border-slate-300 px-2 py-1 font-bold bg-slate-50 align-top">PENDÊNCIAS
-                                    LEGALIZAÇÃO</td>
-                                <td class="border border-slate-300 text-center font-bold">E</td>
-                                <td class="border border-slate-300 px-2">VALOR P/ PAGTO IPVA</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-slate-300 text-center font-bold">F</td>
-                                <td class="border border-slate-300 px-2">VALOR P/ PAGTO PROCEMAX</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-slate-300 text-center font-bold">G</td>
-                                <td class="border border-slate-300 px-2">VALOR P/ PAGTO AUTUAÇÃO E MULTA</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-slate-300 text-center font-bold">H</td>
-                                <td class="border border-slate-300 px-2">VALOR P/ PAGTO LICENCIAMENTO</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-slate-300 text-center font-bold">I</td>
-                                <td class="border border-slate-300 px-2">VALOR P/ PAGTO CHAVE RESERVA</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-slate-300 text-center font-bold">J</td>
-                                <td class="border border-slate-300 px-2">VALOR P/ PAGTO CARTAO DE CARTORIO</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
+                            <tr><td rowspan="3" class="border border-slate-300 px-2 py-1 font-bold bg-slate-50 align-top">SERVIÇOS</td><td class="border border-slate-300 text-center font-bold">K</td><td class="border border-slate-300 px-2">VALOR P/ PAGTO DESPACHANTE</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
+                            <tr><td class="border border-slate-300 text-center font-bold">L</td><td class="border border-slate-300 px-2">VALOR P/ PAGTO REVISÃO O.S</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
+                            <tr><td class="border border-slate-300 text-center font-bold">M</td><td class="border border-slate-300 px-2">VALOR P/ PGTO DE ACESSORIOS</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
 
-                            <tr>
-                                <td rowspan="3"
-                                    class="border border-slate-300 px-2 py-1 font-bold bg-slate-50 align-top">SERVIÇOS
-                                </td>
-                                <td class="border border-slate-300 text-center font-bold">K</td>
-                                <td class="border border-slate-300 px-2">VALOR P/ PAGTO DESPACHANTE</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-slate-300 text-center font-bold">L</td>
-                                <td class="border border-slate-300 px-2">VALOR P/ PAGTO REVISÃO O.S</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-slate-300 text-center font-bold">M</td>
-                                <td class="border border-slate-300 px-2">VALOR P/ PGTO DE ACESSORIOS</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
-
-                            <tr>
-                                <td rowspan="3"
-                                    class="border border-slate-300 px-2 py-1 font-bold bg-slate-50 align-top">DIFERENÇA
-                                </td>
-                                <td class="border border-slate-300 text-center font-bold">N</td>
-                                <td class="border border-slate-300 px-2">VALOR DESCONTO MARGEM VSN</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-slate-300 text-center font-bold">O</td>
-                                <td class="border border-slate-300 px-2">DESPESA DEPARTAMENTO VSN</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
-                            <tr>
-                                <td class="border border-slate-300 text-center font-bold">P</td>
-                                <td class="border border-slate-300 px-2">VALOR DIFERENÇA A SER PAGO PELO CLIENTE</td>
-                                <td class="border border-slate-300 px-1"><input type="text"
-                                        class="valor-input currency-mask calc-item" placeholder="0,00"></td>
-                            </tr>
+                            <tr><td rowspan="3" class="border border-slate-300 px-2 py-1 font-bold bg-slate-50 align-top">DIFERENÇA</td><td class="border border-slate-300 text-center font-bold">N</td><td class="border border-slate-300 px-2">VALOR DESCONTO MARGEM VSN</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
+                            <tr><td class="border border-slate-300 text-center font-bold">O</td><td class="border border-slate-300 px-2">DESPESA DEPARTAMENTO VSN</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
+                            <tr><td class="border border-slate-300 text-center font-bold">P</td><td class="border border-slate-300 px-2">VALOR DIFERENÇA A SER PAGO PELO CLIENTE</td><td class="border border-slate-300 px-1"><input type="text" class="valor-input currency-mask calc-item" placeholder="0,00"></td></tr>
                         </tbody>
                         <tfoot>
                             <tr class="bg-slate-100 font-bold border-t-2 border-slate-400">
-                                <td colspan="3" class="border border-slate-300 px-2 py-1.5 text-right uppercase">TOTAL
-                                    (A até P):</td>
-                                <td class="border border-slate-300 px-2 py-1.5 text-right text-base text-blue-900 font-extrabold"
-                                    id="total_geral">R$ 0,00</td>
+                                <td colspan="3" class="border border-slate-300 px-2 py-1.5 text-right uppercase">TOTAL (A até P):</td>
+                                <td class="border border-slate-300 px-2 py-1.5 text-right text-base text-blue-900 font-extrabold" id="total_geral">R$ 0,00</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -526,10 +356,8 @@
 
                 <!-- Observações -->
                 <div class="border border-slate-300 rounded p-2.5 mb-3 page-break-avoid">
-                    <label class="block font-bold text-xs uppercase text-slate-800 mb-1">OBSERVAÇÕES DO
-                        MEMORANDO:</label>
-                    <textarea rows="2" class="w-full border border-slate-300 rounded p-2 text-xs bg-transparent"
-                        placeholder="Anote observações adicionais..."></textarea>
+                    <label class="block font-bold text-xs uppercase text-slate-800 mb-1">OBSERVAÇÕES DO MEMORANDO:</label>
+                    <textarea rows="2" class="w-full border border-slate-300 rounded p-2 text-xs bg-transparent" placeholder="Anote observações adicionais..."></textarea>
                 </div>
 
                 <!-- Datas e Assinaturas Lado a Lado -->
@@ -561,20 +389,15 @@
                 </div>
 
                 <!-- Rodapé Legal -->
-                <div
-                    class="border-t border-slate-300 pt-2 text-[10px] text-slate-600 text-justify leading-tight page-break-avoid">
+                <div class="border-t border-slate-300 pt-2 text-[10px] text-slate-600 text-justify leading-tight page-break-avoid">
                     <p>
-                        <strong>Observação:</strong> A programação de pagamento será realizada em <strong>D+3</strong>
-                        (Data da entrega do memorando mais 3 dias úteis) e o pagamento somente acontecerá se até o dia
-                        da programação, o veículo tiver sua nota fiscal de entrada emitida e processada no sistema
-                        DealerNet (deverão ser juntados os documentos comprobatórios).
+                        <strong>Observação:</strong> A programação de pagamento será realizada em <strong>D+3</strong> (Data da entrega do memorando mais 3 dias úteis) e o pagamento somente acontecerá se até o dia da programação, o veículo tiver sua nota fiscal de entrada emitida e processada no sistema DealerNet (deverão ser juntados os documentos comprobatórios).
                     </p>
                 </div>
             </div>
 
             <!-- FORMULÁRIO 2: AUTORIZAÇÃO ENTREGA DE VEÍCULO 0KM -->
-            <div id="form-autorizacao"
-                class="form-page hidden w-full max-w-[210mm] bg-white p-6 md:p-8 rounded-lg shadow-md border border-gray-200">
+            <div id="form-autorizacao" class="form-page hidden w-full max-w-[210mm] bg-white p-6 md:p-8 rounded-lg shadow-md border border-gray-200">
                 <!-- Cabeçalho -->
                 <div class="flex items-center space-x-4 border-b-2 border-slate-900 pb-3 mb-4">
                     <img src=".\logo.png" alt="Logo Grupo Automax" class="w-30 h-30 object-contain">
@@ -587,42 +410,25 @@
 
                 <div class="text-[12px] text-justify space-y-3 leading-relaxed">
                     <p>
-                        Eu, <input type="text" class="inline-input font-semibold uppercase" style="width: 280px;"
-                            placeholder="NOME DO CLIENTE / AUTORIZANTE">,
-                        portador(a) do CPF nº <input type="text" class="inline-input font-semibold"
-                            style="width: 140px;" placeholder="000.000.000-00">,
-                        com endereço na Cidade de <input type="text" class="inline-input uppercase"
-                            style="width: 150px;" placeholder="CIDADE">,
-                        <input type="text" class="inline-input uppercase" style="width: 380px;"
-                            placeholder="ENDEREÇO COMPLETO">,
-                        CEP <input type="text" class="inline-input" style="width: 90px;" placeholder="00000-000">,
-                        autorizo o Sr(a) <input type="text" class="inline-input font-semibold uppercase"
-                            style="width: 260px;" placeholder="NOME DO AUTORIZADO">,
-                        portador do CNPJ/CPF <input type="text" class="inline-input font-semibold" style="width: 140px;"
-                            placeholder="000.000.000-00">,
-                        a retirar, numa das sedes do <strong>GRUPO AUTOMAX</strong>, localizadas na Av. Raja Gabáglia,
-                        nº 2222 - Bairro Estoril; Rua Padre Pedro Evangelista, nº 44 - Bairro Coração Eucarístico; ou
-                        Av. Barão Homem de Melo, nº 4350 - Bairro Estoril, o veículo
-                        <input type="text" class="inline-input font-bold uppercase" style="width: 200px;"
-                            placeholder="MODELO DO VEÍCULO">,
-                        CHASSIS <input type="text" class="inline-input font-mono uppercase font-bold"
-                            style="width: 200px;" placeholder="CHASSI DO VEÍCULO">,
-                        emitida pelo <strong>GRUPO AUTOMAX</strong>, isentando a concessionária de toda e qualquer
-                        responsabilidade seja civil, tributária ou criminal que venha a recair sobre o veículo após a
-                        retirada do mesmo da sede da concessionária.
+                        Eu, <input type="text" class="inline-input font-semibold uppercase" style="width: 280px;" placeholder="NOME DO CLIENTE / AUTORIZANTE">, 
+                        portador(a) do CPF nº <input type="text" class="inline-input font-semibold" style="width: 140px;" placeholder="000.000.000-00">, 
+                        com endereço na Cidade de <input type="text" class="inline-input uppercase" style="width: 150px;" placeholder="CIDADE">, 
+                        <input type="text" class="inline-input uppercase" style="width: 380px;" placeholder="ENDEREÇO COMPLETO">, 
+                        CEP <input type="text" class="inline-input" style="width: 90px;" placeholder="00000-000">, 
+                        autorizo o Sr(a) <input type="text" class="inline-input font-semibold uppercase" style="width: 260px;" placeholder="NOME DO AUTORIZADO">, 
+                        portador do CNPJ/CPF <input type="text" class="inline-input font-semibold" style="width: 140px;" placeholder="000.000.000-00">, 
+                        a retirar, numa das sedes do <strong>GRUPO AUTOMAX</strong>, localizadas na Av. Raja Gabáglia, nº 2222 - Bairro Estoril; Rua Padre Pedro Evangelista, nº 44 - Bairro Coração Eucarístico; ou Av. Barão Homem de Melo, nº 4350 - Bairro Estoril, o veículo 
+                        <input type="text" class="inline-input font-bold uppercase" style="width: 200px;" placeholder="MODELO DO VEÍCULO">, 
+                        CHASSIS <input type="text" class="inline-input font-mono uppercase font-bold" style="width: 200px;" placeholder="CHASSI DO VEÍCULO">, 
+                        emitida pelo <strong>GRUPO AUTOMAX</strong>, isentando a concessionária de toda e qualquer responsabilidade seja civil, tributária ou criminal que venha a recair sobre o veículo após a retirada do mesmo da sede da concessionária.
                     </p>
 
                     <p>
-                        Declaro, ainda, ter recebido o veículo aqui descrito, conforme nota fiscal supra, com os
-                        respectivos opcionais, em perfeitas condições de funcionamento e aparência, de acordo com minha
-                        livre escolha, assim como Manual de Uso e Manutenção e o Manual de Garantia.
+                        Declaro, ainda, ter recebido o veículo aqui descrito, conforme nota fiscal supra, com os respectivos opcionais, em perfeitas condições de funcionamento e aparência, de acordo com minha livre escolha, assim como Manual de Uso e Manutenção e o Manual de Garantia.
                     </p>
 
                     <p>
-                        Declaro, ainda, que fui informado sobre todas as observações, restrições, riscos e
-                        funcionalidades do conjunto de roda e pneu sobressalente, bem como sobre o funcionamento do
-                        sistema alternativo, caso o veículo contenha. Tomei conhecimento e aceito as normas e condições
-                        gerais de Garantia e do serviço 24 horas expressas nos respectivos livretes.
+                        Declaro, ainda, que fui informado sobre todas as observações, restrições, riscos e funcionalidades do conjunto de roda e pneu sobressalente, bem como sobre o funcionamento do sistema alternativo, caso o veículo contenha. Tomei conhecimento e aceito as normas e condições gerais de Garantia e do serviço 24 horas expressas nos respectivos livretes.
                     </p>
 
                     <p>
@@ -630,8 +436,7 @@
                     </p>
 
                     <p class="pt-2 font-semibold">
-                        Belo Horizonte / MG, <input type="date" id="data-autorizacao" class="inline-input font-bold"
-                            style="width: 140px;">.
+                        Belo Horizonte / MG, <input type="date" id="data-autorizacao" class="inline-input font-bold" style="width: 140px;">.
                     </p>
                 </div>
 
@@ -666,8 +471,7 @@
 
                 <!-- Lembrete de Documentos -->
                 <div class="mt-6 p-2 bg-slate-100 border-l-4 border-slate-800 text-[10px] font-semibold text-slate-700">
-                    * Fazem parte desta autorização cópia do documento de identidade do Autorizante e do Autorizado,
-                    sendo indispensáveis estes documentos.
+                    * Fazem parte desta autorização cópia do documento de identidade do Autorizante e do Autorizado, sendo indispensáveis estes documentos.
                 </div>
             </div>
 
@@ -677,8 +481,7 @@
                 <div class="flex items-center space-x-4 border-b-2 border-slate-900 pb-3 mb-6">
                     <img src=".\logo.png" alt="Logo Grupo Automax" class="w-30 h-30 object-contain">
                     <div class="flex-1">
-                        <h1
-                            class="text-sm md:text-base font-extrabold text-slate-900 uppercase tracking-wide leading-tight text-center">
+                        <h1 class="text-sm md:text-base font-extrabold text-slate-900 uppercase tracking-wide leading-tight text-center">
                             AUTORIZAÇÃO PARA PAGAMENTO PARCIAL DE VEÍCULO DE TERCEIRO
                         </h1>
                     </div>
@@ -687,45 +490,27 @@
                 <!-- Corpo do Texto -->
                 <div class="text-[13px] text-justify space-y-4 leading-relaxed my-6">
                     <p>
-                        Eu, <input type="text" id="pagto-nome-autorizante" class="inline-input font-semibold uppercase"
-                            style="width: 320px;" placeholder="NOME DO AUTORIZANTE">,
-                        portador(a) do CPF nº <input type="text" class="inline-input font-semibold"
-                            style="width: 140px;" placeholder="000.000.000-00">,
-                        autorizo o <strong>GRUPO AUTOMAX</strong>, inscrito nos CNPJs nº
-                        <strong>20.994.976/0001-34</strong>, <strong>20.994.976/0004-87</strong> e/ou
-                        <strong>35.700.355/0001-78</strong>, efetuar a quitação parcial do veículo
-                        Marca <input type="text" class="inline-input font-semibold uppercase" style="width: 90px;"
-                            placeholder="MARCA">,
-                        Modelo <input type="text" class="inline-input font-semibold uppercase" style="width: 180px;"
-                            placeholder="MODELO DO VEÍCULO"> –
-                        Ano <input type="text" class="inline-input text-center" style="width: 70px;"
-                            placeholder="00/00">,
-                        Cor <input type="text" class="inline-input uppercase" style="width: 90px;" placeholder="COR">,
-                        Chassis <input type="text" class="inline-input font-mono uppercase font-semibold"
-                            style="width: 150px;" placeholder="CHASSI">,
-                        compra e venda realizada em <input type="date" class="inline-input text-center"
-                            style="width: 130px;">,
-                        em nome de <input type="text" class="inline-input font-semibold uppercase" style="width: 280px;"
-                            placeholder="NOME DO COMPRADOR">,
-                        CPF/CNPJ nº <input type="text" class="inline-input font-semibold" style="width: 140px;"
-                            placeholder="000.000.000-00">.
+                        Eu, <input type="text" id="pagto-nome-autorizante" class="inline-input font-semibold uppercase" style="width: 320px;" placeholder="NOME DO AUTORIZANTE">, 
+                        portador(a) do CPF nº <input type="text" class="inline-input font-semibold" style="width: 140px;" placeholder="000.000.000-00">, 
+                        autorizo o <strong>GRUPO AUTOMAX</strong>, inscrito nos CNPJs nº <strong>20.994.976/0001-34</strong>, <strong>20.994.976/0004-87</strong> e/ou <strong>35.700.355/0001-78</strong>, efetuar a quitação parcial do veículo
+                        Marca <input type="text" class="inline-input font-semibold uppercase" style="width: 90px;" placeholder="MARCA">, 
+                        Modelo <input type="text" class="inline-input font-semibold uppercase" style="width: 180px;" placeholder="MODELO DO VEÍCULO"> – 
+                        Ano <input type="text" class="inline-input text-center" style="width: 70px;" placeholder="00/00">, 
+                        Cor <input type="text" class="inline-input uppercase" style="width: 90px;" placeholder="COR">, 
+                        Chassis <input type="text" class="inline-input font-mono uppercase font-semibold" style="width: 150px;" placeholder="CHASSI">, 
+                        compra e venda realizada em <input type="date" class="inline-input text-center" style="width: 130px;">, 
+                        em nome de <input type="text" class="inline-input font-semibold uppercase" style="width: 280px;" placeholder="NOME DO COMPRADOR">, 
+                        CPF/CNPJ nº <input type="text" class="inline-input font-semibold" style="width: 140px;" placeholder="000.000.000-00">.
                     </p>
 
                     <p>
-                        Pagamento parcial no valor de R$ <input type="text"
-                            class="inline-input currency-mask font-extrabold text-blue-900" style="width: 110px;"
-                            placeholder="0,00">
-                        (<input type="text" class="inline-input uppercase font-semibold" style="width: 220px;"
-                            placeholder="VALOR POR EXTENSO">),
-                        depositado na conta da Automax em <input type="date" class="inline-input text-center"
-                            style="width: 130px;">.
+                        Pagamento parcial no valor de R$ <input type="text" class="inline-input currency-mask font-extrabold text-blue-900" style="width: 110px;" placeholder="0,00"> 
+                        (<input type="text" class="inline-input uppercase font-semibold" style="width: 220px;" placeholder="VALOR POR EXTENSO">), 
+                        depositado na conta da Automax em <input type="date" class="inline-input text-center" style="width: 130px;">.
                     </p>
 
                     <p>
-                        Isentando o <strong>GRUPO AUTOMAX</strong> de toda e qualquer responsabilidade seja civil,
-                        tributária ou criminal que venha a recair sobre esta transação comercial a partir da assinatura
-                        da presente, nada mais podendo as partes reclamarem a este título em qualquer instância ou
-                        tribunal.
+                        Isentando o <strong>GRUPO AUTOMAX</strong> de toda e qualquer responsabilidade seja civil, tributária ou criminal que venha a recair sobre esta transação comercial a partir da assinatura da presente, nada mais podendo as partes reclamarem a este título em qualquer instância ou tribunal.
                     </p>
 
                     <p>
@@ -733,29 +518,26 @@
                     </p>
 
                     <p class="pt-4 font-semibold text-right">
-                        Belo Horizonte / MG, <input type="date" id="data-pagamento-terceiro"
-                            class="inline-input font-bold text-center" style="width: 140px;">.
+                        Belo Horizonte / MG, <input type="date" id="data-pagamento-terceiro" class="inline-input font-bold text-center" style="width: 140px;">.
                     </p>
                 </div>
 
                 <!-- Assinatura -->
                 <div class="mt-16 text-center page-break-avoid">
                     <div class="w-96 mx-auto border-t border-slate-800 pt-2">
-                        <input type="text" id="pagto-assinatura-nome"
-                            class="inline-input text-center font-bold uppercase w-full" placeholder="NOME DO ASSINANTE">
+                        <input type="text" id="pagto-assinatura-nome" class="inline-input text-center font-bold uppercase w-full" placeholder="NOME DO ASSINANTE">
                         <div class="text-xs text-slate-500 mt-1">Nome e Assinatura do Assinante</div>
                     </div>
                 </div>
             </div>
 
-            <!-- FORMULÁRIO 4: CHECKLIST AUTUAÇÕES E PENDÊNCIAS DE VEÍCULO (AJUSTADO PARA 1 PÁGINA A4) -->
-            <div id="form-checklist"
-                class="form-page hidden w-full max-w-[210mm] bg-white p-5 md:p-6 rounded-lg shadow-md border border-gray-200 text-xs">
+            <!-- FORMULÁRIO 4: CHECKLIST AUTUAÇÕES E PENDÊNCIAS DE VEÍCULO -->
+            <div id="form-checklist" class="form-page hidden w-full max-w-[210mm] bg-white p-5 md:p-6 rounded-lg shadow-md border border-gray-200 text-xs">
                 <!-- Cabeçalho -->
-                   <div class="flex items-center justify-between border-b-2 border-slate-900 pb-3 mb-4">
+                <div class="flex items-center justify-between border-b-2 border-slate-900 pb-2 mb-3">
                     <div class="flex items-center space-x-3">
                         <img src=".\logo.png" alt="Logo Grupo Automax" class="w-30 h-30 object-contain">
-                        <span class="font-extrabold text-slate-900 text-lg">CHECKLIST AUTUAÇÃO</span>
+                        <span class="font-extrabold text-slate-900 text-base">CHECKLIST AUTUAÇÃO<span>
                     </div>
                     <div class="flex items-center space-x-2 text-[11px]">
                         <span class="font-bold text-slate-700">DATA:</span>
@@ -789,37 +571,28 @@
                         <label class="block font-bold text-slate-700 uppercase text-[10px]">MARCA / MODELO:</label>
                         <input type="text" class="input-std uppercase py-1" placeholder="EX: VW/SAVEIRO CD EX">
                     </div>
-
+                    
                     <!-- Combustível -->
-                    <div
-                        class="col-span-12 border border-slate-200 p-1.5 rounded bg-slate-50 flex items-center space-x-5 text-[11px]">
+                    <div class="col-span-12 border border-slate-200 p-1.5 rounded bg-slate-50 flex items-center space-x-5 text-[11px]">
                         <span class="font-bold text-slate-700 uppercase">COMBUSTÍVEL:</span>
-                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>GASOLINA</span></label>
-                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>ÁLCOOL</span></label>
-                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>FLEX</span></label>
-                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>DIESEL</span></label>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>GASOLINA</span></label>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>ÁLCOOL</span></label>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>FLEX</span></label>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>DIESEL</span></label>
                     </div>
                 </div>
 
                 <!-- Documentos / Impostos -->
                 <div class="border border-slate-300 rounded p-2.5 mb-2.5 text-[11px]">
-                    <h3
-                        class="font-extrabold text-slate-900 border-b border-slate-300 pb-0.5 mb-1.5 uppercase text-[11px]">
-                        DOCUMENTOS / IMPOSTOS</h3>
+                    <h3 class="font-extrabold text-slate-900 border-b border-slate-300 pb-0.5 mb-1.5 uppercase text-[11px]">DOCUMENTOS / IMPOSTOS</h3>
                     <div class="grid grid-cols-12 gap-2">
                         <div class="col-span-6 flex items-center space-x-2">
                             <span class="font-bold text-slate-700">CRLV (DUT) ANO:</span>
-                            <input type="text" class="input-std text-center py-0.5" style="width: 70px;"
-                                placeholder="2026">
+                            <input type="text" class="input-std text-center py-0.5" style="width: 70px;" placeholder="2026">
                         </div>
                         <div class="col-span-6 flex items-center space-x-3">
                             <span class="font-bold text-slate-700">SEGURO OBRIGATÓRIO:</span>
-                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                    class="rounded text-blue-600"> <span>PAGO</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>PAGO</span></label>
                         </div>
                         <div class="col-span-12 flex items-center space-x-2">
                             <span class="font-bold text-slate-700">OBS SEGURO:</span>
@@ -827,22 +600,16 @@
                         </div>
                         <div class="col-span-12 flex flex-wrap items-center gap-2 border-t border-slate-100 pt-1.5">
                             <span class="font-bold text-slate-700">IPVA PAGO:</span>
-                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                    class="rounded text-blue-600"> <span>1ª</span></label>
-                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                    class="rounded text-blue-600"> <span>2ª</span></label>
-                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                    class="rounded text-blue-600"> <span>3ª</span></label>
-                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                    class="rounded text-blue-600"> <span>TOTAL</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>1ª</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>2ª</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>3ª</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>TOTAL</span></label>
                             <span class="font-bold text-slate-700 ml-3">OBS IPVA:</span>
-                            <input type="text" class="input-std flex-1 py-0.5" style="min-width: 100px;"
-                                placeholder="Ex: 2026">
+                            <input type="text" class="input-std flex-1 py-0.5" style="min-width: 100px;" placeholder="Ex: 2026">
                         </div>
                         <div class="col-span-12 flex items-center space-x-2 border-t border-slate-100 pt-1.5">
                             <span class="font-bold text-slate-700">TAXA DE LICENCIAMENTO:</span>
-                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                    class="rounded text-blue-600"> <span>PAGO</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>PAGO</span></label>
                             <span class="font-bold text-slate-700 ml-3">OBS LICENCIAMENTO:</span>
                             <input type="text" class="input-std flex-1 py-0.5" placeholder="Ex: 2026">
                         </div>
@@ -851,9 +618,7 @@
 
                 <!-- Multa / Autuação -->
                 <div class="border border-slate-300 rounded p-2.5 mb-2.5 text-[11px]">
-                    <h3
-                        class="font-extrabold text-slate-900 border-b border-slate-300 pb-0.5 mb-1.5 uppercase text-[11px]">
-                        MULTA / AUTUAÇÃO</h3>
+                    <h3 class="font-extrabold text-slate-900 border-b border-slate-300 pb-0.5 mb-1.5 uppercase text-[11px]">MULTA / AUTUAÇÃO</h3>
                     <div class="grid grid-cols-12 gap-1.5">
                         <div class="col-span-12 md:col-span-6 flex items-center space-x-2">
                             <span class="font-bold text-slate-700 w-20">PREFEITURA:</span>
@@ -880,23 +645,14 @@
 
                 <!-- Restrições -->
                 <div class="border border-slate-300 rounded p-2.5 mb-2.5 text-[11px]">
-                    <h3
-                        class="font-extrabold text-slate-900 border-b border-slate-300 pb-0.5 mb-1.5 uppercase text-[11px]">
-                        RESTRIÇÕES</h3>
+                    <h3 class="font-extrabold text-slate-900 border-b border-slate-300 pb-0.5 mb-1.5 uppercase text-[11px]">RESTRIÇÕES</h3>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-1.5 mb-2">
-                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>RESERVA / DOMÍNIO</span></label>
-                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>ALIENAÇÃO FIDUCIÁRIA</span></label>
-                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>LEASING</span></label>
-                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>COMUNICADO DE VENDA</span></label>
-                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>CONSÓRCIO</span></label>
-                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span
-                                class="font-bold text-green-700">NENHUMA</span></label>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>RESERVA / DOMÍNIO</span></label>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>ALIENAÇÃO FIDUCIÁRIA</span></label>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>LEASING</span></label>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>COMUNICADO DE VENDA</span></label>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>CONSÓRCIO</span></label>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span class="font-bold text-green-700">NENHUMA</span></label>
                     </div>
                     <div class="grid grid-cols-12 gap-2">
                         <div class="col-span-6 flex items-center space-x-2">
@@ -919,24 +675,18 @@
                         </div>
                         <div class="col-span-6 flex items-center space-x-2">
                             <span class="font-bold text-slate-700">VEÍCULO:</span>
-                            <input type="text" class="input-std flex-1 uppercase py-0.5"
-                                placeholder="NOME / PLACA DO VEÍCULO">
+                            <input type="text" class="input-std flex-1 uppercase py-0.5" placeholder="NOME / PLACA DO VEÍCULO">
                         </div>
                     </div>
                     <div class="border-t border-slate-200 pt-1.5">
                         <span class="font-bold text-slate-700 block mb-1">DESPACHANTE RESPONSÁVEL:</span>
                         <div class="flex flex-wrap items-center gap-3">
-                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                    class="rounded text-blue-600"> <span>LÉO</span></label>
-                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                    class="rounded text-blue-600"> <span>DANIEL</span></label>
-                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                    class="rounded text-blue-600"> <span>JULIO</span></label>
-                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                    class="rounded text-blue-600"> <span>PAULO</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>LÉO</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>DANIEL</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>JULIO</span></label>
+                            <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>PAULO</span></label>
                             <div class="flex items-center space-x-1 flex-1">
-                                <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                        class="rounded text-blue-600"> <span>OUTRO:</span></label>
+                                <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox" class="rounded text-blue-600"> <span>OUTRO:</span></label>
                                 <input type="text" class="input-std flex-1 py-0.5" placeholder="Nome do despachante">
                             </div>
                         </div>
@@ -946,10 +696,784 @@
                 <!-- Assinatura -->
                 <div class="mt-4 text-center page-break-avoid">
                     <div class="w-72 mx-auto border-t border-slate-800 pt-1">
-                        <input type="text"
-                            class="input-std text-center font-bold uppercase border-none bg-transparent py-0.5"
-                            placeholder="NOME DO RESPONSÁVEL">
+                        <input type="text" class="input-std text-center font-bold uppercase border-none bg-transparent py-0.5" placeholder="NOME DO RESPONSÁVEL">
                         <div class="text-[9px] text-slate-500">Assinatura do Despachante / Responsável</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORMULÁRIO 5: CONTRATO DE COMPRA DE VEÍCULOS NOVOS (CONTRATO VAREJO) -->
+            <div id="form-contrato" class="form-page hidden w-full max-w-[210mm] bg-white p-6 md:p-8 rounded-lg shadow-md border border-gray-200 text-xs">
+                <!-- VISUALIZAÇÃO 1: PREENCHIMENTO DOS DADOS -->
+                <div id="contrato-passo-form">
+                    <div class="flex items-center space-x-4 border-b-2 border-slate-900 pb-3 mb-4">
+                        <img src=".\logo.png" alt="Logo Grupo Automax" class="w-30 h-30 object-contain">
+                        <div class="flex-1">
+                            <h1 class="text-base font-extrabold text-slate-900 uppercase tracking-wide">
+                                CONTRATO VAREJO - COMPRA DE VEÍCULOS NOVOS
+                            </h1>
+                            <p class="text-slate-500 text-[11px]">Preencha os campos abaixo para gerar o contrato com as cláusulas</p>
+                        </div>
+                    </div>
+
+                    <!-- Dados do Vendedor -->
+                    <div class="mb-4 border border-slate-200 p-3 rounded bg-slate-50">
+                        <label class="block font-bold text-slate-800 uppercase mb-1">Vendedor:</label>
+                        <input type="text" id="cnt-vendedor" class="input-std font-semibold uppercase" placeholder="Nome do vendedor" value="Vendedor">
+                    </div>
+
+                    <!-- Dados do Cliente -->
+                    <div class="mb-4 border border-slate-200 p-3 rounded space-y-3">
+                        <div class="font-bold text-slate-800 uppercase border-b pb-1">Dados do Cliente</div>
+                        <div class="grid grid-cols-12 gap-2">
+                            <div class="col-span-12 md:col-span-8">
+                                <label class="block font-semibold text-slate-600">CLIENTE:</label>
+                                <input type="text" id="cnt-cliente-nome" class="input-std uppercase" placeholder="Nome Completo do Cliente">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">RG / INSCRIÇÃO ESTADUAL:</label>
+                                <input type="text" id="cnt-cliente-rg" class="input-std" placeholder="RG ou IE">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">CPF / CNPJ:</label>
+                                <input type="text" id="cnt-cliente-cpf" class="input-std" placeholder="000.000.000-00">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">TELEFONE:</label>
+                                <input type="text" id="cnt-cliente-tel" class="input-std" placeholder="(00) 00000-0000">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">EMAIL:</label>
+                                <input type="email" id="cnt-cliente-email" class="input-std" placeholder="email@exemplo.com.br">
+                            </div>
+                            <div class="col-span-4 md:col-span-3">
+                                <label class="block font-semibold text-slate-600">CEP:</label>
+                                <input type="text" id="cnt-cliente-cep" class="input-std" placeholder="30000-000">
+                            </div>
+                            <div class="col-span-8 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">ENDEREÇO:</label>
+                                <input type="text" id="cnt-cliente-end" class="input-std uppercase" placeholder="Rua / Avenida">
+                            </div>
+                            <div class="col-span-4 md:col-span-3">
+                                <label class="block font-semibold text-slate-600">NÚMERO:</label>
+                                <input type="text" id="cnt-cliente-num" class="input-std text-center" placeholder="100">
+                            </div>
+                            <div class="col-span-4 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">BAIRRO:</label>
+                                <input type="text" id="cnt-cliente-bairro" class="input-std uppercase" placeholder="Bairro">
+                            </div>
+                            <div class="col-span-4 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">COMPLEMENTO:</label>
+                                <input type="text" id="cnt-cliente-comp" class="input-std uppercase" placeholder="Apt, Bloco, etc">
+                            </div>
+                            <div class="col-span-4 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">CIDADE / UF:</label>
+                                <div class="flex space-x-1">
+                                    <input type="text" id="cnt-cliente-cidade" class="input-std uppercase" placeholder="Belo Horizonte">
+                                    <input type="text" id="cnt-cliente-uf" class="input-std text-center uppercase" style="width: 50px;" value="MG">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dados do Veículo -->
+                    <div class="mb-4 border border-slate-200 p-3 rounded space-y-3">
+                        <div class="font-bold text-slate-800 uppercase border-b pb-1">Dados do Veículo 0KM</div>
+                        <div class="grid grid-cols-12 gap-2">
+                            <div class="col-span-8 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">VEÍCULO:</label>
+                                <input type="text" id="cnt-veiculo-nome" class="input-std uppercase" placeholder="Ex: 2008 ACTIVE FLEX CVT">
+                            </div>
+                            <div class="col-span-4 md:col-span-3">
+                                <label class="block font-semibold text-slate-600">ANO / MODELO:</label>
+                                <input type="text" id="cnt-veiculo-anomodel" class="input-std text-center" placeholder="2025/2025">
+                            </div>
+                            <div class="col-span-6 md:col-span-3">
+                                <label class="block font-semibold text-slate-600">COR:</label>
+                                <input type="text" id="cnt-veiculo-cor" class="input-std uppercase" placeholder="Cor">
+                            </div>
+                            <div class="col-span-6 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">OPCIONAIS (Separe por ;):</label>
+                                <input type="text" id="cnt-veiculo-opcionais" class="input-std" placeholder="Opcional 1; Opcional 2">
+                            </div>
+                            <div class="col-span-6 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">CORTESIAS (Separe por ;):</label>
+                                <input type="text" id="cnt-veiculo-cortesias" class="input-std" placeholder="Película; Tapetes">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">PRAZO DE ENTREGA (DIAS):</label>
+                                <input type="text" id="cnt-veiculo-prazo" class="input-std text-center font-bold" value="90">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dados do Pagamento -->
+                    <div class="mb-4 border border-slate-200 p-3 rounded space-y-3">
+                        <div class="font-bold text-slate-800 uppercase border-b pb-1">Dados do Pagamento</div>
+                        <div class="grid grid-cols-12 gap-2">
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">VALOR DO VEÍCULO (R$):</label>
+                                <input type="text" id="cnt-pagto-valor" class="input-std currency-mask font-bold text-blue-900" placeholder="0,00">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">TRIBUTOS INCIDENTES (R$):</label>
+                                <input type="text" id="cnt-pagto-tributos" class="input-std currency-mask" value="0,00">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">VEÍCULO SEMINOVO - PLACA:</label>
+                                <input type="text" id="cnt-seminovo-placa" class="input-std font-mono uppercase" placeholder="ABC1D23">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">AVALIAÇÃO SEMINOVO (R$):</label>
+                                <input type="text" id="cnt-seminovo-aval" class="input-std currency-mask" placeholder="0,00">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">DATA AVALIAÇÃO:</label>
+                                <input type="date" id="cnt-seminovo-dataaval" class="input-std text-center">
+                            </div>
+                            <div class="col-span-12 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">LOJA / UNIDADE:</label>
+                                <input type="text" id="cnt-loja" class="input-std uppercase" value="Automax - Raja Gabaglia, 2222 - Estoril, BH - MG">
+                            </div>
+                        </div>
+
+                        <div class="pt-2 border-t border-slate-200 space-y-1.5">
+                            <span class="font-bold text-slate-700 block">Situação de regularidade do veículo (Lei 13.111/2015):</span>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-1.5">
+                                <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" id="cnt-reg-garantia" class="rounded text-blue-600"> <span>Garantia de procedência</span></label>
+                                <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" id="cnt-reg-multas" class="rounded text-blue-600"> <span>Débito de multas/taxas anuais legalmente devidas</span></label>
+                                <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" id="cnt-reg-impostos" class="rounded text-blue-600"> <span>Débitos de impostos</span></label>
+                                <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" id="cnt-reg-alienacao" class="rounded text-blue-600"> <span>Alienação fiduciária ou reserva de domínio</span></label>
+                                <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox" id="cnt-reg-restricao" class="rounded text-blue-600"> <span>Existência de outro registro que limita ou impeça circulação</span></label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center pt-2">
+                        <button onclick="gerarDocumentoContrato()" class="w-full md:w-auto px-8 py-3 bg-blue-800 text-white font-bold rounded-lg hover:bg-blue-900 transition shadow-lg text-sm flex items-center justify-center space-x-2 mx-auto">
+                            <span>📄 Gerar Contrato com Cláusulas</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- VISUALIZAÇÃO 2: DOCUMENTO FINAL IMPRESSO DO CONTRATO -->
+                <div id="contrato-passo-doc" class="hidden text-justify leading-normal space-y-3.5 text-[12px]">
+                    <div class="no-print flex justify-between items-center bg-blue-50 p-3 rounded border border-blue-200 mb-4">
+                        <span class="font-bold text-blue-900 text-xs">Documento do Contrato Gerado com Sucesso!</span>
+                        <button onclick="voltarParaEdicaoContrato()" class="text-xs bg-white border border-slate-300 font-semibold px-3 py-1 rounded hover:bg-slate-100">
+                            ✏️ Editar Dados
+                        </button>
+                    </div>
+
+                    <div class="flex justify-between items-center border-b-2 border-slate-900 pb-2 mb-3">
+                        <div>
+                            <img src=".\logo.png" alt="Logo Grupo Automax" class="w-30 h-30 object-contain">
+                            <span id="doc-data-atual" class="text-xs text-slate-700">Belo Horizonte, 4 de Novembro de 2026</span>
+                        </div>
+                        
+                    </div>
+
+                    <h2 class="text-center font-extrabold text-sm uppercase my-2">CONTRATO DE COMPRA DE VEÍCULOS NOVOS</h2>
+
+                    <div class="bg-slate-50 p-2.5 border border-slate-200 rounded space-y-1">
+                        <div class="font-bold text-slate-900 uppercase">1 - CLIENTE: <span id="doc-cli-nome" class="font-normal"></span></div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div><strong>RG/INSCRIÇÃO ESTADUAL:</strong> <span id="doc-cli-rg"></span></div>
+                            <div><strong>CPF/CNPJ:</strong> <span id="doc-cli-cpf"></span></div>
+                        </div>
+                        <div><strong>Endereço:</strong> <span id="doc-cli-endereco"></span></div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <div><strong>Telefone:</strong> <span id="doc-cli-tel"></span></div>
+                            <div><strong>Email:</strong> <span id="doc-cli-email"></span></div>
+                            <div><strong>Vendedor:</strong> <span id="doc-cli-vendedor"></span></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-2.5 border border-slate-200 rounded space-y-1">
+                        <div class="font-bold text-slate-900 uppercase">2 - DESCRIÇÃO DO VEÍCULO</div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <div><strong>Veículo:</strong> <span id="doc-veic-nome"></span></div>
+                            <div><strong>Ano/Modelo:</strong> <span id="doc-veic-ano"></span></div>
+                            <div><strong>Cor:</strong> <span id="doc-veic-cor"></span></div>
+                        </div>
+                        <div><strong>Opcional:</strong> <span id="doc-veic-opcionais"></span></div>
+                        <div><strong>Cortesia:</strong> <span id="doc-veic-cortesias"></span></div>
+                    </div>
+
+                    <div class="space-y-2 text-[11.5px]">
+                        <div class="font-bold text-slate-900 uppercase">3 - CARACTERÍSTICAS DO VEÍCULO INFORMADO</div>
+                        <p><strong>3.1</strong> - Comprador ciente da disponibilidade de uma unidade junto ao Fabricante que será solicitada pela concessionária somente após o sinal de compra e assinatura do respectivo contrato.</p>
+                        <p><strong>3.2</strong> - Prazo previsto de entrega: acima de <span id="doc-veic-prazo">90</span> dias, após comprovação de todos os pagamentos que compõem o preço do veículo (sinal, pagto à vista, financiamento de agentes bancários e/ou consórcios).</p>
+                        <p><strong>3.3</strong> - O(s) preço(s) do(s) veículo(s) estão sujeitos à alteração(ões), conforme tabela do valor do(s) veículo(s) à época do faturamento.</p>
+                        <p class="pl-3 text-[11px]"><strong>3.3.1</strong> - Fica ciente o comprador que a Medida Provisória nº 1.175/23 do Governo Federal publicada em 05.06.2023 referente ao desconto para aquisição de veículos sustentáveis, dispõe em seu ARTIGO 1º § 2º, que o desconto será aplicável pelo prazo de cento e vinte dias, e, até atingir o valor dos recursos disponibilizados na referida medida em seu ARTIGO 14, contado da data de entrada em vigor da Medida Provisória, assim sendo, se o veículo escolhido pelo comprador for faturado pela montadora após o prazo de vigência desta medida provisória ou não havendo mais os recursos disponibilizados na referida medida, o comprador deverá pagar pelo veículo escolhido o preço vigente à época do faturamento sem o benefício concedido pelo Governo Federal.</p>
+                        <p><strong>3.4</strong> - Fica ciente o comprador que o fabricante poderá alterar o modelo do veículo escolhido, bem como alterar os itens de série do veículo, entre a data da compra e a data da entrega do veículo, ficando a cargo do comprador o ônus destas mudanças.</p>
+                        <p><strong>3.5</strong> - No preço vigente na data do faturamento, exceto se de outra forma ajustado entre as partes já estão incluídos impostos, encargos e despesas, exceto aquelas necessárias ao licenciamento, emplacamento e seguros. Está incluído no preço do(s) veículo(s) o valor do transporte deste até a concessionária.</p>
+                        <p><strong>3.6</strong> - No caso de haver por parte do cliente alteração no pedido do veículo, deverão as partes firmar termo aditivo ao presente contrato com relação a(s) alteração(ões) requeridas pelo comprador.</p>
+                    </div>
+
+                    <div class="space-y-2 text-[11.5px] bg-slate-50 p-2.5 border border-slate-200 rounded">
+                        <div class="font-bold text-slate-900 uppercase">4 - CONDIÇÕES DE PAGAMENTO</div>
+                        <p><strong>4.1 Valor do Veículo:</strong> R$ <span id="doc-pagto-valor">0,00</span></p>
+                        <p><strong>4.2</strong> - Sinal veículo seminovo - Placa <span id="doc-semi-placa">-</span>, avaliado em R$ <span id="doc-semi-aval">0,00</span>, data avaliação <span id="doc-semi-data">-</span>. A aceitação do veículo seminovo como parte de pagamento do negócio somente será confirmada após observadas condições dispostas na cláusula 5.8 deste instrumento.</p>
+                        <p><strong>4.3</strong> - O Veículo seminovo descrito na cláusula 4.2 estará sujeito a nova avaliação no caso do mesmo ser entregue somente após a disponibilidade do veículo 0KM na concessionária.</p>
+                        <p><strong>4.4</strong> - O comprador está ciente que se houver cancelamento ou desistência de compra, a AUTOMAX não irá devolver o veículo de PLACA <span id="doc-semi-placa2">-</span>, entregue como sinal de compra, mas fará o pagamento ao Sr.(a) <span id="doc-cli-nome2"></span> do valor de R$ <span id="doc-semi-aval2">0,00</span> (avaliação realizada em <span id="doc-semi-data2">-</span>), corrigida monetariamente pelos índices legais da tabela do Tribunal de Justiça do Estado de Minas Gerais.</p>
+                        <p><strong>4.5</strong> - Restante do pagamento do veículo 0KM será após emissão da Nota Fiscal, em conformidade com o disposto na cláusula 3.3 do presente instrumento.</p>
+                    </div>
+
+                    <div class="space-y-2 text-[11.5px]">
+                        <div class="font-bold text-slate-900 uppercase">5 - CLÁUSULAS E CONDIÇÕES DA VENDA</div>
+                        <p><strong>5.1</strong> - Após preenchido e assinado pelas partes todo o pedido com os dados do veículo pelo comprador, este só poderá ser alterado ou modificado caso haja anuência de ambas as partes e sejam ressarcidas pelo adquirente do veículo 0km as despesas que houver decorrentes do faturamento.</p>
+                        <p><strong>5.2</strong> - Nas condições de pagamento a prazo ou financiamento, a não aprovação da ficha cadastral constitui motivo para rescisão do negócio.</p>
+                        <p><strong>5.3</strong> - As responsabilidades pelas informações cadastrais não cabem à vendedora nos casos de financiamento. O presente negócio estará desfeito de pleno direito, com a restituição da importância paga pelo comprador a título de entrada/parte de pagamento, na hipótese de que o agente financeiro e/ou consórcio não aprovar a operação.</p>
+                        <p><strong>5.4</strong> - A vendedora não assume nenhuma responsabilidade sobre os indexadores ou critérios de atualização monetária das suas financeiras ou consórcio.</p>
+                        <p><strong>5.5</strong> - Quando o veículo transitar, por solicitação do comprador, qualquer dano, se houver, correrá por conta do mesmo.</p>
+                        <p><strong>5.6</strong> - O veículo será entregue ao comprador ou pessoa devidamente autorizada por ele mediante apresentação de autorização com firma reconhecida.</p>
+                        <p><strong>5.7</strong> - A AUTOMAX informa que, na hipótese de ocorrer a desistência da compra do veículo descrito neste contrato de compra e venda, o Comprador deverá pagar à Concessionária uma multa contratual de 10% (dez por cento) do valor do veículo.</p>
+                        <p><strong>5.8</strong> - A VENDEDORA informa ao COMPRADOR que a negociação de compra e venda do veículo somente será concluída após ser realizado o laudo de avaliação cautelar feito por uma empresa especializada e após ser realizada a consulta jurídica do veículo entregue como parte de pagamento e de seu proprietário. Informa ainda a VENDEDORA que, caso o referido veículo não seja aprovado no citado laudo (por qualquer vício "oculto"), ou não seja aprovado na mencionada consulta jurídica, o veículo poderá sofrer alteração no valor de sua avaliação e/ou o cancelamento da compra e venda.</p>
+                        <p><strong>5.9</strong> - O comprador procederá à vistoria no veículo no ato da entrega do bem novo.</p>
+                    </div>
+
+                    <div class="space-y-2 text-[11.5px] bg-slate-50 p-2.5 border border-slate-200 rounded page-break-avoid">
+                        <div class="font-bold text-slate-900 uppercase">6 - LEI 13.111/2015 - TRIBUTOS, TAXAS, MULTAS E RESTRIÇÕES SOBRE O VEÍCULO</div>
+                        <p><strong>6.1 Valor dos Tributos incidentes sobre a comercialização do veículo:</strong> R$ <span id="doc-tributos-valor">0,00</span></p>
+                        <p><strong>6.2 - Situação de regularidade do veículo quanto a:</strong></p>
+                        <div class="grid grid-cols-2 gap-1.5 pl-3">
+                            <div><span id="doc-chk-garantia">[ ]</span> Garantia de procedência.</div>
+                            <div><span id="doc-chk-multas">[ ]</span> Débito de multas/taxas anuais legalmente devidas.</div>
+                            <div><span id="doc-chk-impostos">[ ]</span> Débitos de impostos.</div>
+                            <div><span id="doc-chk-alienacao">[ ]</span> Alienação fiduciária ou reserva de domínio.</div>
+                            <div class="col-span-2"><span id="doc-chk-restricao">[ ]</span> Existência de qualquer outro registro que limita ou impeça a circulação do veículo?</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 text-[11px] text-justify leading-snug">
+                        <div class="font-bold text-slate-900 uppercase text-[11.5px]">7 - COMPARTILHAMENTO DE DADOS (LGPD)</div>
+                        <p><strong>7.1</strong> - Para cumprimento da obrigação contratual e legal vinculada à execução do presente contrato, a concessionária compartilhará os dados pessoais do Titular com outros agentes de tratamento de dados, para as finalidades listadas neste instrumento, comprometendo-se todos os envolvidos com os princípios da boa-fé, finalidade, adequação, necessidade, livre acesso, qualidade dos dados, transparência, segurança, prevenção, não discriminação e responsabilização e prestação de contas.</p>
+                        <p><strong>7.2</strong> - A concessionária, em decorrência do seu contrato com a montadora, poderá realizar a transferência internacional dos Dados Pessoais tratados, observando as previsões legais aplicáveis.</p>
+                        <p><strong>7.3</strong> - A concessionária e seus parceiros selecionados se responsabilizam por manter medidas de segurança, técnicas e administrativas suficientes a proteger os dados pessoais do Titular, se comprometendo com sua notificação, caso ocorra algum incidente de segurança que possa acarretar risco ou dano relevante, conforme artigo 48 da Lei nº 13.709/2018.</p>
+                        <p><strong>7.4</strong> - O Titular poderá acessar livremente os seus dados pessoais, em consulta facilitada e gratuita, com o objetivo de garantir a integralidade dos seus dados. Para exercer o seu direito de acesso e retificação, o Titular de dados pessoais deverá encaminhar um e-mail ao DPO: jurídico@grupoautomax.com.br.</p>
+                        <p><strong>7.5</strong> - A concessionária e os seus parceiros selecionados utilizarão e manterão os dados pessoais do Titular arquivados em meio digital, durante todo o período contratual firmado e após o término para cumprimento de obrigação legal (art. 16 da Lei nº 13.709/2018).</p>
+                        <p><strong>7.6</strong> - O Titular está ciente que, na medida do permitted pela legislação, o GRUPO AUTOMAX e a montadora poderão tratar dados pessoais e do veículo para estudos, pesquisas de satisfação e melhoria dos produtos e serviços.</p>
+                        <p><strong>7.7</strong> - O prazo de armazenamento dos dados físicos será por 05 (cinco) anos e o dos digitais será de 10 (dez) anos prorrogável por mais 05 (cinco) anos, em conformidade com o CDC e a LGPD.</p>
+                    </div>
+
+                    <div class="pt-8 page-break-avoid">
+                        <p class="font-bold text-center mb-6">De Acordo:</p>
+                        <div class="grid grid-cols-3 gap-4 text-center text-[11px]">
+                            <div>
+                                <div class="border-t border-slate-800 pt-1 font-bold">CLIENTE</div>
+                                <span id="doc-ass-cliente" class="text-slate-700 block mt-1"></span>
+                            </div>
+                            <div>
+                                <div class="border-t border-slate-800 pt-1 font-bold">VENDEDOR</div>
+                                <span id="doc-ass-vendedor" class="text-slate-700 block mt-1"></span>
+                            </div>
+                            <div>
+                                <div class="border-t border-slate-800 pt-1 font-bold">GERENTE</div>
+                                <span class="text-slate-700 block mt-1">Grupo Automax</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORMULÁRIO 6: CONTRATO DE VENDAS DIRETAS (FCA / FABRICA) -->
+            <div id="form-vendas-diretas" class="form-page hidden w-full max-w-[210mm] bg-white p-6 md:p-8 rounded-lg shadow-md border border-gray-200 text-xs">
+                <!-- VISUALIZAÇÃO 1: PREENCHIMENTO DOS DADOS -->
+                <div id="vd-passo-form">
+                    <div class="flex items-center space-x-4 border-b-2 border-slate-900 pb-3 mb-4">
+                        <img src=".\logo.png" alt="Logo Grupo Automax" class="w-30 h-30 object-contain">
+                        <div class="flex-1">
+                            <h1 class="text-base font-extrabold text-slate-900 uppercase tracking-wide">
+                                CONTRATO DE VENDAS DIRETAS
+                            </h1>
+                            <p class="text-slate-500 text-[11px]">Solicitação de Faturamento Direto da Fábrica (STELLANTIS / FIAT)</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 border border-slate-200 p-3 rounded space-y-3 bg-slate-50">
+                        <div class="font-bold text-slate-800 uppercase border-b pb-1">Identificação</div>
+                        <div class="grid grid-cols-12 gap-2">
+                            <div class="col-span-6 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">VENDEDOR:</label>
+                                <input type="text" id="vd-vendedor" class="input-std uppercase" value="ERICK">
+                            </div>
+                            <div class="col-span-6 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">CATEGORIA:</label>
+                                <input type="text" id="vd-categoria" class="input-std uppercase" placeholder="Ex: PF, CNPJ, Produtor Rural">
+                            </div>
+                            <div class="col-span-12 md:col-span-8">
+                                <label class="block font-semibold text-slate-600">NOME DO CLIENTE / RAZÃO SOCIAL:</label>
+                                <input type="text" id="vd-cliente" class="input-std uppercase" placeholder="Nome Completo ou Empresa">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">DESCONTO (%):</label>
+                                <input type="text" id="vd-desconto" class="input-std" placeholder="Ex: 5%">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 border border-slate-200 p-3 rounded space-y-3">
+                        <div class="font-bold text-slate-800 uppercase border-b pb-1">Dados para Faturamento (Cliente)</div>
+                        <div class="grid grid-cols-12 gap-2">
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">CPF / CNPJ:</label>
+                                <input type="text" id="vd-cpf" class="input-std" placeholder="000.000.000-00">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">INSCRIÇÃO ESTADUAL:</label>
+                                <input type="text" id="vd-ie" class="input-std" placeholder="IE ou Isento">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">TELEFONE:</label>
+                                <input type="text" id="vd-tel" class="input-std" placeholder="(31) 00000-0000">
+                            </div>
+                            <div class="col-span-6 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">EMAIL:</label>
+                                <input type="email" id="vd-email" class="input-std" placeholder="email@exemplo.com.br">
+                            </div>
+                            <div class="col-span-6 md:col-span-3">
+                                <label class="block font-semibold text-slate-600">CEP:</label>
+                                <input type="text" id="vd-cep" class="input-std" placeholder="30000-000">
+                            </div>
+                            <div class="col-span-6 md:col-span-3">
+                                <label class="block font-semibold text-slate-600">ESTADO (UF):</label>
+                                <input type="text" id="vd-estado" class="input-std text-center uppercase" value="MG">
+                            </div>
+                            <div class="col-span-8 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">ENDEREÇO (Rua, Nº):</label>
+                                <input type="text" id="vd-end" class="input-std uppercase" placeholder="Avenida Raja Gabaglia, 2222">
+                            </div>
+                            <div class="col-span-4 md:col-span-3">
+                                <label class="block font-semibold text-slate-600">BAIRRO:</label>
+                                <input type="text" id="vd-bairro" class="input-std uppercase" placeholder="Estoril">
+                            </div>
+                            <div class="col-span-6 md:col-span-3">
+                                <label class="block font-semibold text-slate-600">CIDADE:</label>
+                                <input type="text" id="vd-cidade" class="input-std uppercase" placeholder="Belo Horizonte">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 border border-slate-200 p-3 rounded space-y-3">
+                        <div class="font-bold text-slate-800 uppercase border-b pb-1">Dados do Veículo e Valores</div>
+                        <div class="grid grid-cols-12 gap-2">
+                            <div class="col-span-12 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">MODELO DO VEÍCULO:</label>
+                                <input type="text" id="vd-veiculo" class="input-std uppercase" placeholder="Ex: STRADA FREEDOM CABINE DUPLA 1.3">
+                            </div>
+                            <div class="col-span-6 md:col-span-2">
+                                <label class="block font-semibold text-slate-600">QUANTIDADE:</label>
+                                <input type="text" id="vd-qtde" class="input-std text-center font-bold" value="1">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">ANO / MODELO:</label>
+                                <input type="text" id="vd-anomodel" class="input-std text-center" placeholder="2026/2026">
+                            </div>
+                            <div class="col-span-6 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">OPCIONAIS:</label>
+                                <input type="text" id="vd-opcionais" class="input-std" placeholder="Opcionais do veículo">
+                            </div>
+                            <div class="col-span-6 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">CORTESIAS:</label>
+                                <input type="text" id="vd-cortesias" class="input-std" placeholder="Cortesias oferecidas">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">COR:</label>
+                                <input type="text" id="vd-cor" class="input-std uppercase" placeholder="Cor">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">PREÇO PÚBLICO (UNIDADE):</label>
+                                <input type="text" id="vd-preco-publico" class="input-std currency-mask" placeholder="0,00">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">PREÇO VENDA (UNIDADE):</label>
+                                <input type="text" id="vd-preco-venda" class="input-std currency-mask font-bold text-blue-900" placeholder="0,00">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">DATA DA COMPRA:</label>
+                                <input type="date" id="vd-data-compra" class="input-std text-center">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">LOCAL DE ENTREGA:</label>
+                                <input type="text" id="vd-local-entrega" class="input-std uppercase" value="TESTE / CONCESSIONÁRIA">
+                            </div>
+                            <div class="col-span-12 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">FORMA DE PAGAMENTO:</label>
+                                <input type="text" id="vd-forma-pagto" class="input-std uppercase" value="À VISTA">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center pt-2">
+                        <button onclick="gerarDocumentoVendasDiretas()" class="w-full md:w-auto px-8 py-3 bg-blue-800 text-white font-bold rounded-lg hover:bg-blue-900 transition shadow-lg text-sm flex items-center justify-center space-x-2 mx-auto">
+                            <span>📄 Gerar Contrato de Vendas Diretas</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- VISUALIZAÇÃO 2: DOCUMENTO FINAL DE VENDAS DIRETAS -->
+                <div id="vd-passo-doc" class="hidden text-justify leading-normal space-y-3.5 text-[12px]">
+                    <div class="no-print flex justify-between items-center bg-blue-50 p-3 rounded border border-blue-200 mb-4">
+                        <span class="font-bold text-blue-900 text-xs">Contrato de Vendas Diretas Gerado com Sucesso!</span>
+                        <button onclick="voltarParaEdicaoVendasDiretas()" class="text-xs bg-white border border-slate-300 font-semibold px-3 py-1 rounded hover:bg-slate-100">
+                            ✏️ Editar Dados
+                        </button>
+                    </div>
+
+                    <div class="flex justify-between items-center border-b-2 border-slate-900 pb-2 mb-3">
+                        <div>
+                             <img src=".\logo.png" alt="Logo Grupo Automax" class="w-30 h-30 object-contain">
+                            <span class="text-sm font-extrabold text-slate-800 uppercase block">CONTRATO DE VENDAS DIRETAS</span>
+                            <span id="vd-doc-data-cab" class="text-xs text-slate-700">Belo Horizonte, 4 de Novembro de 2026</span>
+                        </div>
+                       
+                    </div>
+
+                    <div class="text-[11.5px] space-y-1 my-3 bg-slate-50 p-2.5 border border-slate-200 rounded">
+                        <p><strong>À</strong></p>
+                        <p class="font-bold">FCA FIAT CHRYSLER AUTOMOVEIS BRASIL LTDA</p>
+                        <p>Depto. de Vendas Diretas</p>
+                        <p class="pt-1"><strong>Ref.: Contrato de compra e venda de veículos</strong></p>
+                        <div class="grid grid-cols-3 gap-2 pt-1">
+                            <div><strong>Nome do Cliente:</strong> <span id="vd-doc-cliente"></span></div>
+                            <div><strong>Categoria:</strong> <span id="vd-doc-categoria"></span></div>
+                            <div><strong>Vendedor:</strong> <span id="vd-doc-vendedor"></span></div>
+                        </div>
+                        <div><strong>Desconto:</strong> <span id="vd-doc-desconto"></span></div>
+                    </div>
+
+                    <p class="font-bold">Prezados Senhores,</p>
+                    <p>Pelo presente contrato, solicitamos o faturamento direto da fábrica do seguinte veículo:</p>
+
+                    <div class="bg-slate-50 p-2.5 border border-slate-200 rounded space-y-1 text-[11.5px]">
+                        <div class="grid grid-cols-2 gap-2">
+                            <div><strong>Modelo:</strong> <span id="vd-doc-veiculo"></span></div>
+                            <div><strong>Quantidade:</strong> <span id="vd-doc-qtde"></span></div>
+                        </div>
+                        <div><strong>Opcionais:</strong> <span id="vd-doc-opcionais"></span></div>
+                        <div><strong>Cortesias:</strong> <span id="vd-doc-cortesias"></span></div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <div><strong>Cor:</strong> <span id="vd-doc-cor"></span></div>
+                            <div><strong>Ano/Modelo:</strong> <span id="vd-doc-anomodel"></span></div>
+                            <div><strong>Preço Público (Un):</strong> R$ <span id="vd-doc-precopublico"></span></div>
+                        </div>
+                        <div><strong>Preço Venda (Un):</strong> R$ <span id="vd-doc-precovenda"></span></div>
+                    </div>
+
+                    <div class="bg-slate-50 p-2.5 border border-slate-200 rounded space-y-1 text-[11.5px]">
+                        <div class="font-bold text-slate-900 uppercase">DADOS PARA FATURAMENTO</div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div><strong>Empresa / Cliente:</strong> <span id="vd-doc-fat-cliente"></span></div>
+                            <div><strong>CNPJ / CPF:</strong> <span id="vd-doc-fat-cpf"></span></div>
+                            <div><strong>Telefone:</strong> <span id="vd-doc-fat-tel"></span></div>
+                            <div><strong>Inscrição Estadual:</strong> <span id="vd-doc-fat-ie"></span></div>
+                            <div class="col-span-2"><strong>Email:</strong> <span id="vd-doc-fat-email"></span></div>
+                            <div class="col-span-2"><strong>Endereço:</strong> <span id="vd-doc-fat-end"></span></div>
+                            <div><strong>Cidade:</strong> <span id="vd-doc-fat-cidade"></span></div>
+                            <div><strong>Estado:</strong> <span id="vd-doc-fat-estado"></span></div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 text-[11px]">
+                        <div class="font-bold text-slate-900 uppercase">OBSERVAÇÕES E CONDIÇÕES GERAIS</div>
+                        <p><strong>1 - ASSINATURA:</strong> Este Pedido está sujeito à aceitação expressa da FCA FIAT CHRYSLER AUTOMOVEIS BRASIL LTDA, de acordo com as disposições do Contrato de Intermediação de Vendas Diretas e Internet firmado com a Concessionária, sendo as informações e dados inseridos neste instrumento de sua total e integral responsabilidade, estando estas corretas e tendo sido conferidos os dados e documentos exigidos pertinentes à categoria do Cliente.</p>
+                        <p><strong>2</strong> - Os preços estão sujeitos a alteração, conforme tabela de preços vigentes à data de faturamento do(s) veículo(s).</p>
+                        <p><strong>3</strong> - No preço vigente na data do faturamento, exceto se de outra forma ajustado entre as partes, já estão incluídos impostos, encargos e despesas, excetoquelas necessárias ao licenciamento, emplacamento e seguros. Está incluído no preço do(s) veículo(s) o valor de transporte deste até a Concessionária de entrega determinada pelo Cliente.</p>
+                        <p><strong>4</strong> - O pagamento deverá ser efetuado diretamente à FCA FIAT CHRYSLER AUTOMOVEIS BRASIL LTDA, através de boleto bancário, no prazo equivalente ao período estimado de trânsito médio até a concessionária (de acordo com tabela da FCA FIAT CHRYSLER AUTOMOVEIS BRASIL LTDA acrescido de 6 (seis) dias, contados a partir da data de expedição do(s) veículo(s), exceto se de outra forma expressamente formalizado com a FCA FIAT CHRYSLER AUTOMOVEIS BRASIL LTDA. O emplacamento do(s) veículo(s) causará o imediato vencimento da dívida.</p>
+                        <p><strong>5</strong> - Em caso de atraso no pagamento será aplicada a cobrança de multa de 1% (um por cento) por mês de atraso do efetivo pagamento + CDI, calculados pro rata die, desde a data do inadimplemento até a data do efetivo cumprimento da obrigação.</p>
+                        <p><strong>6</strong> - Veículos pagos com cheques somente terão a entrega liberada após a confirmação da compensação dos mesmos.</p>
+                        <p><strong>7</strong> - O(s) veículo(s) deverá(ao) ser enviado(s) para a Concessionária de entrega abaixo indicada, que fará a revisão de entrega e o(s) entregará para o Cliente, após a confirmação do integral recebimento dos recursos pela FCA FIAT CHRYSLER AUTOMOVEIS BRASIL LTDA.</p>
+                        <p><strong>8</strong> - A responsabilidade da FCA FIAT CHRYSLER AUTOMOVEIS BRASIL LTDA quanto ao transporte do(s) veículo(s) cessa no momento do recebimento do(s) mesmo(s) pela Concessionária indicada neste pedido.</p>
+                        <p><strong>9</strong> - O(s) veículo(s) destina(m)-se à atividade profissional ou ativo fixo do Cliente e não poderá(ao) ser comercializado(s) em prazo inferior a 365 (trezentos e sessenta e cinco) dias da data de emissão da Nota Fiscal.</p>
+                        <p><strong>10</strong> - Os produtores agropecuários, locadoras de veículos e empresas de arrendamento mercantil domiciliados nos Estados de vigência do Convênio ICMS 64/2006 deverão recolher a diferença de ICMS conforme previsto naquele Convênio, no caso de alienação do(s) veículo(s) antes de transcorrido o prazo de 1 (um) ano, contado da data de emissão da nota fiscal.</p>
+                        <p><strong>11</strong> - A alteração de especificações do(s) veículo(s) poderá(ão) ocorrer a pedido do Cliente e o recebimento do(s) veículo(s) implica na aceitação da(s) alteração(ões) efetivada(s), exonerando a FCA FIAT CHRYSLER AUTOMOVEIS BRASIL LTDA de qualquer responsabilidade ou obrigação.</p>
+                        <p><strong>12</strong> - O(s) desconto(s) concedido(s) de acordo com o volume de compra e categoria somente será(ão) aplicado(s) se adquirida a totalidade dos veículos pedidos. Ocorrendo o cadastramento de quantidade de veículos cujo faturamento será feito em número inferior ao cadastrado, e que altere o percentual de desconto para faixa de desconto inferior a cadastrada, levará à cobrança da diferença dos valores dos descontos indevidos na conta movimento da Concessionária, condição expressamente aceita quando da utilização do portal B2B ou colocação de pedidos por outra forma.</p>
+                        <p><strong>13</strong> - Declara a Concessionária que tem conhecimento de que o(s) veículo(s) só poderá(ão) ser entregue(s) ao cliente após confirmação do recebimento do pagamento dado pela FCA FIAT CHRYSLER AUTOMOVEIS BRASIL LTDA via sistema informatizado.</p>
+                        <p><strong>14</strong> - Declara o cliente que assume o compromisso de que as duplicatas referentes às vendas sejam quitadas até o vencimento, sob pena de assumir, sem ressalvas e desde já, os encargos financeiros correspondentes ao(s) dia(s) de atraso, pela mora.</p>
+                        <p><strong>15</strong> - Fica ciente o comprador que ocorrendo alteração nos itens de série do veículo que alterem o preço do bem entre a data da compra e a data da entrega do veículo por determinação do fabricante, o comprador deverá arcar com o ônus decorrente desta alteração.</p>
+                        <p><strong>16</strong> - Fica ciente o comprador que quando o pagamento de parte ou valor total do veículo adquirido for representado por Carta Bônus Itaú Card Fiat, a liberação para entrega do veículo somente se dará após o pagamento do crédito à FCA Fiat Chrysler Automoveis Brasil Ltda.</p>
+                        <p><strong>17</strong> - Fica ciente o comprador que quando os pagamentos totais ou parciais forem constituídos por depósitos, créditos e/ou transferências bancárias a liberação de entrega do veículo somente se dará com a identificação dos valores por parte da FCA Fiat Chrysler Automoveis Brasil Ltda, após o envio dos documentos comprovantes, apresentados pelo comprador.</p>
+                        <p><strong>18</strong> - A AUTOMAX informa, que na hipótese de ocorrer a desistência da compra do veículo descrito neste contrato de compra e venda o Comprador deverá pagar à Concessionária uma multa contratual de 10% (dez por cento) do valor do veículo.</p>
+                        <p><strong>18.1</strong> - O comprador está ciente que se houver o cancelamento ou desistência de compra, a AUTOMAX não irá devolver o veículo entregue como sinal de compra, mas fará o pagamento ao Sr.(a) <span id="vd-doc-cli-nome2"></span> do valor referente à avaliação realizada, corrigida monetariamente pelos índices legais do Tribunal de Justiça de Minas Gerais.</p>
+                        <p><strong>18.2</strong> - A vendedora informa ao comprador que a negociação de compra e venda do veículo somente será concluída após ser realizado o laudo de avaliação cautelar confeccionado por empresa especializada e após realizada a consulta jurídica do veículo entregue como parte de pagamento e de seu proprietário, podendo sofrer alteração ou cancelamento em caso de vícios ocultos ou reprovação.</p>
+                        <p><strong>19</strong> - Fica ciente o comprador que os pedidos de veículos disponibilizados pela montadora em caráter promocionais, ou seja, veículos do fabricante com descontos e opcionais especiais, somente terão a confirmação da compra e venda após o fabricante enviar por escrito para a concessionária a reserva do respectivo veículo ao comprador.</p>
+                        <p><strong>20 - Compartilhamento de Dados (LGPD):</strong> A Controladora fica autorizada a compartilhar os dados pessoais do Titular com outros agentes de tratamento de dados, caso seja necessário para as finalidades listadas neste instrumento, respeitados os princípios da boa-fé, finalidade, adequação e segurança.</p>
+                        <p><strong>20.1</strong> - A Controladora se responsabiliza por manter medidas de segurança suficientes a proteger os dados pessoais do Titular (Art. 48 da Lei nº 13.709/2018).</p>
+                        <p><strong>20.2</strong> - À Controladora é permitido manter e utilizar os dados pessoais do Titular durante todo o período contratualmente firmado e após o término para cumprimento de obrigação legal ou fiscal.</p>
+                        <p><strong>20.3</strong> - O Titular poderá revogar seu consentimento, a qualquer tempo, por e-mail ou carta escrita, conforme Art. 8º, § 5º, da LGPD.</p>
+                        <p><strong>20.4</strong> - Estas declarações são prestadas também em conformidade com as cláusulas e condições do Termo de Responsabilidade de Utilização do Portal B2B e suas alterações.</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-2.5 border border-slate-200 rounded space-y-1 text-[11.5px] page-break-avoid">
+                        <div class="font-bold text-slate-900 uppercase">DADOS PARA FECHAMENTO DO PEDIDO</div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div><strong>Data da Compra:</strong> <span id="vd-doc-datacompra"></span></div>
+                            <div><strong>Concessionária de Entrega:</strong> <span id="vd-doc-localentrega"></span></div>
+                            <div class="col-span-2"><strong>Prazo de Entrega:</strong> De acordo com o faturamento e a entrega do veículo na concessionária pela montadora.</div>
+                            <div class="col-span-2"><strong>Forma de Pagamento:</strong> <span id="vd-doc-formapagto"></span></div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 page-break-avoid space-y-4">
+                        <p class="font-bold text-center">LI, ESTOU CIENTE E DE ACORDO COM AS CLÁUSULAS ACIMA DESCRITAS.</p>
+                        <div class="text-center">
+                            <span class="text-slate-600 block">Atenciosamente:</span>
+                            <div class="w-72 mx-auto border-t border-slate-800 pt-1 mt-6">
+                                <span id="vd-doc-assinatura" class="font-bold uppercase block"></span>
+                                <span class="text-[10px] text-slate-500">Cliente / Comprador</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORMULÁRIO 7: CONTRATO DE VENDAS E-COMMERCE (GROUPE PSA - BRASIL) -->
+            <div id="form-ecommerce" class="form-page hidden w-full max-w-[210mm] bg-white p-6 md:p-8 rounded-lg shadow-md border border-gray-200 text-xs">
+                <!-- VISUALIZAÇÃO 1: PREENCHIMENTO DOS DADOS -->
+                <div id="ec-passo-form">
+                    <div class="flex items-center space-x-4 border-b-2 border-slate-900 pb-3 mb-4">
+                        <img src=".\logo.png" alt="Logo Grupo Automax" class="w-30 h-30 object-contain">
+                        <div class="flex-1">
+                            <h1 class="text-base font-extrabold text-slate-900 uppercase tracking-wide">
+                                CONTRATO DE VENDAS E-COMMERCE (PSA)
+                            </h1>
+                            <p class="text-slate-500 text-[11px]">Solicitação de Faturamento Direto da Fábrica (Groupe PSA - Brasil)</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 border border-slate-200 p-3 rounded space-y-3 bg-slate-50">
+                        <div class="font-bold text-slate-800 uppercase border-b pb-1">Identificação</div>
+                        <div class="grid grid-cols-12 gap-2">
+                            <div class="col-span-6 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">VENDEDOR:</label>
+                                <input type="text" id="ec-vendedor" class="input-std uppercase" value="ERICK">
+                            </div>
+                            <div class="col-span-6 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">CATEGORIA:</label>
+                                <input type="text" id="ec-categoria" class="input-std uppercase" placeholder="Ex: PF, CNPJ">
+                            </div>
+                            <div class="col-span-12 md:col-span-8">
+                                <label class="block font-semibold text-slate-600">NOME DO CLIENTE / RAZÃO SOCIAL:</label>
+                                <input type="text" id="ec-cliente" class="input-std uppercase" placeholder="Nome Completo ou Empresa">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">DESCONTO (%):</label>
+                                <input type="text" id="ec-desconto" class="input-std" placeholder="Ex: 5%">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 border border-slate-200 p-3 rounded space-y-3">
+                        <div class="font-bold text-slate-800 uppercase border-b pb-1">Dados para Faturamento (Cliente)</div>
+                        <div class="grid grid-cols-12 gap-2">
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">CPF / CNPJ:</label>
+                                <input type="text" id="ec-cpf" class="input-std" placeholder="000.000.000-00">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">INSCRIÇÃO ESTADUAL:</label>
+                                <input type="text" id="ec-ie" class="input-std" placeholder="IE ou Isento">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">TELEFONE:</label>
+                                <input type="text" id="ec-tel" class="input-std" placeholder="(31) 00000-0000">
+                            </div>
+                            <div class="col-span-6 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">EMAIL:</label>
+                                <input type="email" id="ec-email" class="input-std" placeholder="email@exemplo.com.br">
+                            </div>
+                            <div class="col-span-6 md:col-span-3">
+                                <label class="block font-semibold text-slate-600">CEP:</label>
+                                <input type="text" id="ec-cep" class="input-std" placeholder="30000-000">
+                            </div>
+                            <div class="col-span-6 md:col-span-3">
+                                <label class="block font-semibold text-slate-600">ESTADO (UF):</label>
+                                <input type="text" id="ec-estado" class="input-std text-center uppercase" value="MG">
+                            </div>
+                            <div class="col-span-8 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">ENDEREÇO (Rua, Nº):</label>
+                                <input type="text" id="ec-end" class="input-std uppercase" placeholder="Avenida Raja Gabaglia, 2222">
+                            </div>
+                            <div class="col-span-4 md:col-span-3">
+                                <label class="block font-semibold text-slate-600">BAIRRO:</label>
+                                <input type="text" id="ec-bairro" class="input-std uppercase" placeholder="Estoril">
+                            </div>
+                            <div class="col-span-6 md:col-span-3">
+                                <label class="block font-semibold text-slate-600">CIDADE:</label>
+                                <input type="text" id="ec-cidade" class="input-std uppercase" placeholder="Belo Horizonte">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 border border-slate-200 p-3 rounded space-y-3">
+                        <div class="font-bold text-slate-800 uppercase border-b pb-1">Dados do Veículo e Valores</div>
+                        <div class="grid grid-cols-12 gap-2">
+                            <div class="col-span-12 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">MODELO DO VEÍCULO:</label>
+                                <input type="text" id="ec-veiculo" class="input-std uppercase" placeholder="Ex: E-208 GT ELETRICO AT">
+                            </div>
+                            <div class="col-span-6 md:col-span-2">
+                                <label class="block font-semibold text-slate-600">QUANTIDADE:</label>
+                                <input type="text" id="ec-qtde" class="input-std text-center font-bold" value="1">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">ANO / MODELO:</label>
+                                <input type="text" id="ec-anomodel" class="input-std text-center" placeholder="2026/2026">
+                            </div>
+                            <div class="col-span-6 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">OPCIONAIS:</label>
+                                <input type="text" id="ec-opcionais" class="input-std" placeholder="PACK EDITION / Outros">
+                            </div>
+                            <div class="col-span-6 md:col-span-6">
+                                <label class="block font-semibold text-slate-600">CORTESIAS:</label>
+                                <input type="text" id="ec-cortesias" class="input-std" placeholder="Cortesias oferecidas">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">COR:</label>
+                                <input type="text" id="ec-cor" class="input-std uppercase" placeholder="PRETO">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">PREÇO PÚBLICO (UNIDADE):</label>
+                                <input type="text" id="ec-preco-publico" class="input-std currency-mask" placeholder="0,00">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">PREÇO VENDA (UNIDADE):</label>
+                                <input type="text" id="ec-preco-venda" class="input-std currency-mask font-bold text-blue-900" placeholder="0,00">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">DATA DA COMPRA:</label>
+                                <input type="date" id="ec-data-compra" class="input-std text-center">
+                            </div>
+                            <div class="col-span-6 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">CONCESSIONÁRIA ENTREGA:</label>
+                                <input type="text" id="ec-local-entrega" class="input-std uppercase" value="MAX VEÍCULOS">
+                            </div>
+                            <div class="col-span-12 md:col-span-4">
+                                <label class="block font-semibold text-slate-600">FORMA DE PAGAMENTO:</label>
+                                <input type="text" id="ec-forma-pagto" class="input-std uppercase" value="À VISTA">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center pt-2">
+                        <button onclick="gerarDocumentoEcommerce()" class="w-full md:w-auto px-8 py-3 bg-blue-800 text-white font-bold rounded-lg hover:bg-blue-900 transition shadow-lg text-sm flex items-center justify-center space-x-2 mx-auto">
+                            <span>📄 Gerar Contrato E-Commerce PSA</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- VISUALIZAÇÃO 2: DOCUMENTO FINAL DE VENDAS E-COMMERCE -->
+                <div id="ec-passo-doc" class="hidden text-justify leading-normal space-y-3.5 text-[12px]">
+                    <div class="no-print flex justify-between items-center bg-blue-50 p-3 rounded border border-blue-200 mb-4">
+                        <span class="font-bold text-blue-900 text-xs">Contrato E-Commerce PSA Gerado com Sucesso!</span>
+                        <button onclick="voltarParaEdicaoEcommerce()" class="text-xs bg-white border border-slate-300 font-semibold px-3 py-1 rounded hover:bg-slate-100">
+                            ✏️ Editar Dados
+                        </button>
+                    </div>
+
+                    <div class="flex justify-between items-center border-b-2 border-slate-900 pb-2 mb-3">
+                        <div>
+                            <img src=".\logo.png" alt="Logo Grupo Automax" class="w-30 h-30 object-contain">
+                            <span class="text-sm font-extrabold text-slate-800 uppercase block">CONTRATO DE VENDAS E-COMMERCE</span>
+                            <span id="ec-doc-data-cab" class="text-xs text-slate-700">Belo Horizonte, 4 de Novembro de 2026</span>
+                        </div>
+                        
+                    </div>
+
+                    <div class="text-[11.5px] space-y-1 my-3 bg-slate-50 p-2.5 border border-slate-200 rounded">
+                        <p><strong>À</strong></p>
+                        <p class="font-bold">GROUPE PSA - Brasil</p>
+                        <p>Depto. de Vendas Diretas</p>
+                        <p class="pt-1"><strong>Ref.: Contrato de compra e venda de veículos</strong></p>
+                        <div class="grid grid-cols-3 gap-2 pt-1">
+                            <div><strong>Nome do Cliente:</strong> <span id="ec-doc-cliente"></span></div>
+                            <div><strong>Categoria:</strong> <span id="ec-doc-categoria"></span></div>
+                            <div><strong>Vendedor:</strong> <span id="ec-doc-vendedor"></span></div>
+                        </div>
+                        <div><strong>Desconto:</strong> <span id="ec-doc-desconto"></span></div>
+                    </div>
+
+                    <p class="font-bold">Prezados Senhores,</p>
+                    <p>Pelo presente contrato, solicitamos o faturamento direto da fábrica do seguinte veículo:</p>
+
+                    <div class="bg-slate-50 p-2.5 border border-slate-200 rounded space-y-1 text-[11.5px]">
+                        <div class="grid grid-cols-2 gap-2">
+                            <div><strong>Modelo:</strong> <span id="ec-doc-veiculo"></span></div>
+                            <div><strong>Quantidade:</strong> <span id="ec-doc-qtde"></span></div>
+                        </div>
+                        <div><strong>Opcionais:</strong> <span id="ec-doc-opcionais"></span></div>
+                        <div><strong>Cortesias:</strong> <span id="ec-doc-cortesias"></span></div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <div><strong>Cor:</strong> <span id="ec-doc-cor"></span></div>
+                            <div><strong>Ano/Modelo:</strong> <span id="ec-doc-anomodel"></span></div>
+                            <div><strong>Preço Público (Un):</strong> R$ <span id="ec-doc-precopublico"></span></div>
+                        </div>
+                        <div><strong>Preço Venda (Un):</strong> R$ <span id="ec-doc-precovenda"></span></div>
+                    </div>
+
+                    <div class="bg-slate-50 p-2.5 border border-slate-200 rounded space-y-1 text-[11.5px]">
+                        <div class="font-bold text-slate-900 uppercase">DADOS PARA FATURAMENTO</div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div><strong>Empresa / Cliente:</strong> <span id="ec-doc-fat-cliente"></span></div>
+                            <div><strong>CPF / CNPJ:</strong> <span id="ec-doc-fat-cpf"></span></div>
+                            <div><strong>Telefone:</strong> <span id="ec-doc-fat-tel"></span></div>
+                            <div><strong>Inscrição Estadual:</strong> <span id="ec-doc-fat-ie"></span></div>
+                            <div class="col-span-2"><strong>Email:</strong> <span id="ec-doc-fat-email"></span></div>
+                            <div class="col-span-2"><strong>Endereço:</strong> <span id="ec-doc-fat-end"></span></div>
+                            <div><strong>Cidade:</strong> <span id="ec-doc-fat-cidade"></span></div>
+                            <div><strong>Estado:</strong> <span id="ec-doc-fat-estado"></span></div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 text-[11px]">
+                        <div class="font-bold text-slate-900 uppercase">OBSERVAÇÕES E CONDIÇÕES GERAIS (PSA)</div>
+                        <p><strong>1 - ASSINATURA:</strong> Este Pedido está sujeito à aceitação expressa da PEUGEOT-CITROEN DO BRASIL AUTOMOVEIS LTDA, de acordo com as disposições do Contrato de Intermediação de Vendas Diretas e Internet firmado com a Concessionária, sendo as informações e dados inseridos neste instrumento de sua total e integral responsabilidade, estando estas corretas e tendo sido conferidos os dados e documentos exigidos pertinentes à categoria do Cliente.</p>
+                        <p><strong>2</strong> - Os preços estão sujeitos a alteração, conforme tabela de preços vigentes à data de faturamento do(s) veículo(s).</p>
+                        <p><strong>3</strong> - No preço vigente na data do faturamento, exceto se de outra forma ajustado entre as partes, já estão incluídos impostos, encargos e despesas, exceto aquelas necessárias ao licenciamento, emplacamento e seguros. Está incluído no preço do(s) veículo(s) o valor de transporte deste até a Concessionária de entrega determinada pelo Cliente.</p>
+                        <p><strong>4</strong> - O pagamento deverá ser efetuado diretamente à PEUGEOT-CITROEN DO BRASIL AUTOMOVEIS LTDA, através de boleto bancário, no prazo equivalente ao período estimado de trânsito médio até a concessionária (de acordo com tabela da PEUGEOT-CITROEN DO BRASIL AUTOMOVEIS LTDA acrescido de 6 (seis) dias, contados a partir da data de expedição do(s) veículo(s), exceto se de outra forma expressamente formalizado com a PEUGEOT-CITROEN DO BRASIL AUTOMOVEIS LTDA. O emplacamento do(s) veículo(s) causará o imediato vencimento da dívida.</p>
+                        <p><strong>5</strong> - Em caso de atraso no pagamento será aplicada a cobrança de multa de 1% (um por cento) por mês de atraso do efetivo pagamento + CDI, calculados pro rata die, desde a data do inadimplemento até a data do efetivo cumprimento da obrigação.</p>
+                        <p><strong>6</strong> - Veículos pagos com cheques somente terão a entrega liberada após a confirmação da compensação dos mesmos.</p>
+                        <p><strong>7</strong> - O(s) veículo(s) deverá(ao) ser enviado(s) para a Concessionária de entrega abaixo indicada, que fará a revisão de entrega e o(s) entregará para o Cliente, após a confirmação do integral recebimento dos recursos pela PEUGEOT-CITROEN DO BRASIL AUTOMOVEIS LTDA.</p>
+                        <p><strong>8</strong> - A responsabilidade da PEUGEOT-CITROEN DO BRASIL AUTOMOVEIS LTDA quanto ao transporte do(s) veículo(s) cessa no momento do recebimento do(s) mesmo(s) pela Concessionária indicada neste pedido.</p>
+                        <p><strong>9</strong> - No caso de aquisição por pessoa jurídica (CNPJ), o(s) referido (s) bem(ns) não poderá(ão) ser comercializado(s) em prazo inferior a 180 (cento e oitenta) dias a contar da data de emissão da Nota Fiscal.</p>
+                        <p><strong>10</strong> - Os produtores agropecuários, locadoras de veículos e empresas de arrendamento mercantil domiciliados nos Estados de vigência do Convênio ICMS 64/2006 deverão recolher a diferença de ICMS conforme previsto naquele Convênio, no caso de alienação do(s) veículo(s) antes de transcorrido o prazo de 1 (um) ano, contado da data de emissão da nota fiscal.</p>
+                        <p><strong>11</strong> - A alteração de especificações do(s) veículo(s) poderá(ão) ocorrer a pedido do Cliente e o recebimento do(s) veículo(s) implica na aceitação da(s) alteração(ões) efetivada(s), exonerando a PEUGEOT-CITROEN DO BRASIL AUTOMOVEIS LTDA de qualquer responsabilidade ou obrigação.</p>
+                        <p><strong>12</strong> - O(s) desconto(s) concedido(s) de acordo com o volume de compra e categoria somente será(ão) aplicado(s) se adquirida a totalidade dos veículos pedidos. Ocorrendo o cadastramento de quantidade de veículos cujo faturamento será feito em número inferior ao cadastrado, e que altere o percentual de desconto para faixa de desconto inferior a cadastrada, levará à cobrança da diferença dos valores dos descontos indevidos na conta movimento da Concessionária, condição expressamente aceita quando da utilização do portal B2B ou colocação de pedidos por outra forma.</p>
+                        <p><strong>13</strong> - Declara a Concessionária que tem conhecimento de que o(s) veículo(s) só poderá(ão) ser entregue(s) ao cliente após confirmação do recebimento do pagamento dado pela PEUGEOT CITROEN DO BRASIL AUTOMOVEIS LTDA via sistema informatizado.</p>
+                        <p><strong>14</strong> - Declara o cliente que assume o compromisso de que as duplicatas referentes às vendas sejam quitadas até o vencimento, sob pena de assumir, sem ressalvas e desde já, os encargos financeiros correspondentes aos(s) dia(s) de atraso, pela mora.</p>
+                        <p><strong>15</strong> - Fica ciente o comprador que ocorrendo alteração nos itens de série do veículo que alterem o preço do bem entre a data da compra e a data da entrega do veículo por determinação do fabricante, o comprador, deverá arcar com o ônus decorrente desta alteração.</p>
+                        <p><strong>16</strong> - Fica ciente o comprador que quando o pagamento de parte ou valor total do veículo adquirido for representado por Carta Bônus Itaú Card Fiat, a liberação para entrega do veículo somente se dará após o pagamento do crédito à PEUGEOT CITROEN DO BRASIL AUTOMOVEIS LTDA.</p>
+                        <p><strong>17</strong> - Fica ciente o comprador que quando os pagamentos totais ou parciais forem constituídos por depósitos, créditos e/ou transferências bancárias a liberação de entrega do veículo somente se dará com a identificação dos valores por parte da PEUGEOT CITROEN DO BRASIL AUTOMOVEIS LTDA, após o envio dos documentos comprovantes, apresentados pelo comprador.</p>
+                        <p><strong>18</strong> - A MAX VEÍCULOS LTDA, informa, que na hipótese de ocorrer a desistência da compra do veículo descrito neste contrato de compra e venda o Comprador deverá pagar à Concessionária uma multa contratual de 10% (dez por cento) do valor do veículo.</p>
+                        <p><strong>18.1</strong> - O comprador está ciente que se houver o cancelamento ou desistência de compra, a MAX VEÍCULOS não irá devolver o veículo entregue como sinal de compra, mas fará o pagamento ao Sr. (a) <span id="ec-doc-cli-nome2"></span> do valor referente à avaliação realizada, corrigida monetariamente pelos índices legais da tabela do Tribunal de Justiça do Estado de Minas Gerais.</p>
+                        <p><strong>19</strong> - Fica ciente o comprador que os pedidos de veículos disponibilizados pela montadora em caráter promocionais, ou seja, veículos do fabricante com descontos e opcionais especiais, somente terão a confirmação da compra e venda, após o fabricante enviar por escrito para a concessionária a reserva do respectivo veículo ao comprador.</p>
+                        <p><strong>20 - Compartilhamento de Dados:</strong> A Controladora fica autorizada a compartilhar os dados pessoais do Titular com outros agentes de tratamento de dados, caso seja necessário para as finalidades listadas neste instrumento, desde que respeitados os princípios da boa-fé, finalidade, adequação e transparência.</p>
+                        <p><strong>20.1</strong> - A Controladora se responsabiliza por manter medidas de segurança suficientes a proteger os dados pessoais do Titular conforme o artigo 48 da Lei nº 13.709/2018 (LGPD).</p>
+                        <p><strong>20.2</strong> - À Controladora é permitido manter e utilizar os dados pessoais do Titular durante todo o período contratual e após para cumprimento de obrigação legal ou fiscal.</p>
+                        <p><strong>20.3</strong> - O Titular poderá revogar seu consentimento a qualquer tempo por e-mail ou carta escrita.</p>
+                        <p><strong>20.4</strong> - Estas declarações são prestadas também em conformidade com o Termo de Responsabilidade de Utilização do Portal B2B e suas alterações.</p>
+                    </div>
+
+                    <div class="bg-slate-50 p-2.5 border border-slate-200 rounded space-y-1 text-[11.5px] page-break-avoid">
+                        <div class="font-bold text-slate-900 uppercase">DADOS PARA FECHAMENTO DO PEDIDO</div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div><strong>Data da Compra:</strong> <span id="ec-doc-datacompra"></span></div>
+                            <div><strong>Concessionária de Entrega:</strong> <span id="ec-doc-localentrega"></span></div>
+                            <div class="col-span-2"><strong>Prazo de Entrega:</strong> De acordo com o faturamento e a entrega do veículo na concessionária pela montadora, esclarecendo que o prazo registrado no documento assinado com a montadora (OPV) é apenas um prazo estimado pela mesma, podendo o veículo ser faturado e entregue na concessionária antes ou depois do referido prazo.</div>
+                            <div class="col-span-2"><strong>Forma de Pagamento:</strong> <span id="ec-doc-formapagto"></span></div>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 page-break-avoid space-y-4">
+                        <p class="font-bold text-center">LI, ESTOU CIENTE E DE ACORDO COM AS CLÁUSULAS ACIMA DESCRITAS.</p>
+                        <div class="text-center">
+                            <span class="text-slate-600 block">Atenciosamente:</span>
+                            <div class="w-72 mx-auto border-t border-slate-800 pt-1 mt-6">
+                                <span id="ec-doc-assinatura" class="font-bold uppercase block"></span>
+                                <span class="text-[10px] text-slate-500">Cliente / Comprador</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -962,17 +1486,22 @@
         // Datas atuais automáticas (Hoje)
         const hoje = new Date();
         const dataHojeStr = hoje.toISOString().split('T')[0];
-
+        
         document.getElementById('data-autorizacao').value = dataHojeStr;
         document.getElementById('data-retirada').value = dataHojeStr;
         document.getElementById('data-pagamento-terceiro').value = dataHojeStr;
         document.getElementById('data-checklist').value = dataHojeStr;
+        document.getElementById('cnt-seminovo-dataaval').value = dataHojeStr;
+        document.getElementById('vd-data-compra').value = dataHojeStr;
+        document.getElementById('ec-data-compra').value = dataHojeStr;
+
+        const dataFormatadaCabecalho = "Belo Horizonte, " + hoje.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
         // Sincronizar nome do autorizante com o campo de assinatura no Formulário 3
         const inputNomeAut = document.getElementById('pagto-nome-autorizante');
         const inputNomeAss = document.getElementById('pagto-assinatura-nome');
         if (inputNomeAut && inputNomeAss) {
-            inputNomeAut.addEventListener('input', function () {
+            inputNomeAut.addEventListener('input', function() {
                 inputNomeAss.value = this.value;
             });
         }
@@ -980,11 +1509,14 @@
         // Alternar Formulários
         function showForm(formId) {
             document.querySelectorAll('.form-page').forEach(page => page.classList.add('hidden'));
-
+            
             const btnMem = document.getElementById('nav-memorando');
             const btnAut = document.getElementById('nav-autorizacao');
             const btnPag = document.getElementById('nav-pagamento');
             const btnChk = document.getElementById('nav-checklist');
+            const btnCnt = document.getElementById('nav-contrato');
+            const btnVd  = document.getElementById('nav-vendas-diretas');
+            const btnEc  = document.getElementById('nav-ecommerce');
             const title = document.getElementById('page-title');
 
             const inactiveClass = "w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition";
@@ -994,6 +1526,9 @@
             btnAut.className = inactiveClass;
             btnPag.className = inactiveClass;
             btnChk.className = inactiveClass;
+            btnCnt.className = inactiveClass;
+            btnVd.className = inactiveClass;
+            btnEc.className = inactiveClass;
 
             if (formId === 'memorando') {
                 document.getElementById('form-memorando').classList.remove('hidden');
@@ -1011,7 +1546,230 @@
                 document.getElementById('form-checklist').classList.remove('hidden');
                 btnChk.className = activeClass;
                 title.textContent = "Checklist de Autuações e Pendências do Veículo";
+            } else if (formId === 'contrato') {
+                document.getElementById('form-contrato').classList.remove('hidden');
+                btnCnt.className = activeClass;
+                title.textContent = "Contrato de Compra de Veículos Novos (Varejo)";
+            } else if (formId === 'vendas-diretas') {
+                document.getElementById('form-vendas-diretas').classList.remove('hidden');
+                btnVd.className = activeClass;
+                title.textContent = "Contrato de Vendas Diretas (FCA / Fábrica)";
+            } else if (formId === 'ecommerce') {
+                document.getElementById('form-ecommerce').classList.remove('hidden');
+                btnEc.className = activeClass;
+                title.textContent = "Contrato de Vendas E-Commerce (GROUPE PSA - Brasil)";
             }
+        }
+
+        // LÓGICA DO CONTRATO VAREJO
+        function gerarDocumentoContrato() {
+            const vendedor = document.getElementById('cnt-vendedor').value || 'ERICK';
+            const cliNome = document.getElementById('cnt-cliente-nome').value || 'teste';
+            const cliRg = document.getElementById('cnt-cliente-rg').value || '1111111';
+            const cliCpf = document.getElementById('cnt-cliente-cpf').value || '123.206.446-79';
+            const cliTel = document.getElementById('cnt-cliente-tel').value || '(31) 3299-0986';
+            const cliEmail = document.getElementById('cnt-cliente-email').value || 'erick.souza@grupoautomax.com.br';
+            const cliCep = document.getElementById('cnt-cliente-cep').value || '30494-170';
+            const cliEnd = document.getElementById('cnt-cliente-end').value || 'Avenida Raja Gabaglia';
+            const cliNum = document.getElementById('cnt-cliente-num').value || '2222';
+            const cliBairro = document.getElementById('cnt-cliente-bairro').value || 'Estoril';
+            const cliComp = document.getElementById('cnt-cliente-comp').value || '';
+            const cliCidade = document.getElementById('cnt-cliente-cidade').value || 'Belo Horizonte';
+            const cliUf = document.getElementById('cnt-cliente-uf').value || 'MG';
+
+            const veicNome = document.getElementById('cnt-veiculo-nome').value || '2008 ACTIVE FLEX CVT';
+            const veicAno = document.getElementById('cnt-veiculo-anomodel').value || '2025/2025';
+            const veicCor = document.getElementById('cnt-veiculo-cor').value || 'PRETO';
+            const veicOpc = document.getElementById('cnt-veiculo-opcionais').value || 'Nenhum';
+            const veicCort = document.getElementById('cnt-veiculo-cortesias').value || 'Nenhuma';
+            const veicPrazo = document.getElementById('cnt-veiculo-prazo').value || '90';
+
+            const pagtoValor = document.getElementById('cnt-pagto-valor').value || '55.000,00';
+            const pagtoTributos = document.getElementById('cnt-pagto-tributos').value || '0,00';
+            const semiPlaca = document.getElementById('cnt-seminovo-placa').value || '-';
+            const semiAval = document.getElementById('cnt-seminovo-aval').value || '0,00';
+            const semiData = document.getElementById('cnt-seminovo-dataaval').value;
+
+            document.getElementById('doc-data-atual').textContent = dataFormatadaCabecalho;
+            document.getElementById('doc-cli-nome').textContent = cliNome;
+            document.getElementById('doc-cli-nome2').textContent = cliNome;
+            document.getElementById('doc-ass-cliente').textContent = cliNome;
+            document.getElementById('doc-cli-rg').textContent = cliRg;
+            document.getElementById('doc-cli-cpf').textContent = cliCpf;
+            document.getElementById('doc-cli-tel').textContent = cliTel;
+            document.getElementById('doc-cli-email').textContent = cliEmail;
+
+            let enderecoCompleto = `${cliEnd}, ${cliNum}`;
+            if(cliComp) enderecoCompleto += `, ${cliComp}`;
+            enderecoCompleto += `, ${cliBairro}, CEP ${cliCep}, ${cliCidade} - ${cliUf}`;
+            document.getElementById('doc-cli-endereco').textContent = enderecoCompleto;
+            
+            document.getElementById('doc-cli-vendedor').textContent = vendedor;
+            document.getElementById('doc-ass-vendedor').textContent = vendedor;
+
+            document.getElementById('doc-veic-nome').textContent = veicNome;
+            document.getElementById('doc-veic-ano').textContent = veicAno;
+            document.getElementById('doc-veic-cor').textContent = veicCor;
+            document.getElementById('doc-veic-opcionais').textContent = veicOpc;
+            document.getElementById('doc-veic-cortesias').textContent = veicCort;
+            document.getElementById('doc-veic-prazo').textContent = veicPrazo;
+
+            document.getElementById('doc-pagto-valor').textContent = pagtoValor;
+            document.getElementById('doc-tributos-valor').textContent = pagtoTributos;
+            document.getElementById('doc-semi-placa').textContent = semiPlaca;
+            document.getElementById('doc-semi-placa2').textContent = semiPlaca;
+            document.getElementById('doc-semi-aval').textContent = semiAval;
+            document.getElementById('doc-semi-aval2').textContent = semiAval;
+            document.getElementById('doc-semi-data').textContent = semiData ? semiData.split('-').reverse().join('/') : '-';
+            document.getElementById('doc-semi-data2').textContent = semiData ? semiData.split('-').reverse().join('/') : '-';
+
+            document.getElementById('doc-chk-garantia').textContent = document.getElementById('cnt-reg-garantia').checked ? '[X]' : '[ ]';
+            document.getElementById('doc-chk-multas').textContent = document.getElementById('cnt-reg-multas').checked ? '[X]' : '[ ]';
+            document.getElementById('doc-chk-impostos').textContent = document.getElementById('cnt-reg-impostos').checked ? '[X]' : '[ ]';
+            document.getElementById('doc-chk-alienacao').textContent = document.getElementById('cnt-reg-alienacao').checked ? '[X]' : '[ ]';
+            document.getElementById('doc-chk-restricao').textContent = document.getElementById('cnt-reg-restricao').checked ? '[X]' : '[ ]';
+
+            document.getElementById('contrato-passo-form').classList.add('hidden');
+            document.getElementById('contrato-passo-doc').classList.remove('hidden');
+        }
+
+        function voltarParaEdicaoContrato() {
+            document.getElementById('contrato-passo-doc').classList.add('hidden');
+            document.getElementById('contrato-passo-form').classList.remove('hidden');
+        }
+
+        // LÓGICA DO CONTRATO VENDAS DIRETAS (FCA)
+        function gerarDocumentoVendasDiretas() {
+            const vendedor = document.getElementById('vd-vendedor').value || 'ERICK';
+            const categoria = document.getElementById('vd-categoria').value || 'PF';
+            const cliente = document.getElementById('vd-cliente').value || 'TESTE';
+            const desconto = document.getElementById('vd-desconto').value || '5%';
+            const cpf = document.getElementById('vd-cpf').value || '123.206.446-79';
+            const ie = document.getElementById('vd-ie').value || '000000';
+            const tel = document.getElementById('vd-tel').value || '(31) 3299-0986';
+            const email = document.getElementById('vd-email').value || 'erick.souza@grupoautomax.com.br';
+            const cep = document.getElementById('vd-cep').value || '30494-170';
+            const estado = document.getElementById('vd-estado').value || 'MG';
+            const end = document.getElementById('vd-end').value || 'Avenida Raja Gabaglia, 2222';
+            const bairro = document.getElementById('vd-bairro').value || 'Estoril';
+            const cidade = document.getElementById('vd-cidade').value || 'Belo Horizonte';
+
+            const veiculo = document.getElementById('vd-veiculo').value || 'STRADA FREEDOM CABINE DUPLA 1.3';
+            const qtde = document.getElementById('vd-qtde').value || '1';
+            const anomodel = document.getElementById('vd-anomodel').value || '2026/2026';
+            const opcionais = document.getElementById('vd-opcionais').value || 'TESTE';
+            const cortesias = document.getElementById('vd-cortesias').value || 'TESTE';
+            const cor = document.getElementById('vd-cor').value || 'PRETO';
+            const precoPublico = document.getElementById('vd-preco-publico').value || '5.505,00';
+            const precoVenda = document.getElementById('vd-preco-venda').value || '5.000,00';
+            const dataCompra = document.getElementById('vd-data-compra').value;
+            const localEntrega = document.getElementById('vd-local-entrega').value || 'TESTE';
+            const formaPagto = document.getElementById('vd-forma-pagto').value || 'À VISTA';
+
+            document.getElementById('vd-doc-data-cab').textContent = dataFormatadaCabecalho;
+            document.getElementById('vd-doc-cliente').textContent = cliente;
+            document.getElementById('vd-doc-categoria').textContent = categoria;
+            document.getElementById('vd-doc-vendedor').textContent = vendedor;
+            document.getElementById('vd-doc-desconto').textContent = desconto;
+
+            document.getElementById('vd-doc-veiculo').textContent = veiculo;
+            document.getElementById('vd-doc-qtde').textContent = qtde;
+            document.getElementById('vd-doc-anomodel').textContent = anomodel;
+            document.getElementById('vd-doc-opcionais').textContent = opcionais;
+            document.getElementById('vd-doc-cortesias').textContent = cortesias;
+            document.getElementById('vd-doc-cor').textContent = cor;
+            document.getElementById('vd-doc-precopublico').textContent = precoPublico;
+            document.getElementById('vd-doc-precovenda').textContent = precoVenda;
+
+            document.getElementById('vd-doc-fat-cliente').textContent = cliente;
+            document.getElementById('vd-doc-fat-cpf').textContent = cpf;
+            document.getElementById('vd-doc-fat-tel').textContent = tel;
+            document.getElementById('vd-doc-fat-ie').textContent = ie;
+            document.getElementById('vd-doc-fat-email').textContent = email;
+            document.getElementById('vd-doc-fat-end').textContent = `${end}, ${bairro} - ${cep}`;
+            document.getElementById('vd-doc-fat-cidade').textContent = cidade;
+            document.getElementById('vd-doc-fat-estado').textContent = estado;
+
+            document.getElementById('vd-doc-cli-nome2').textContent = cliente;
+            document.getElementById('vd-doc-datacompra').textContent = dataCompra ? dataCompra.split('-').reverse().join('/') : '15/06/2026';
+            document.getElementById('vd-doc-localentrega').textContent = localEntrega;
+            document.getElementById('vd-doc-formapagto').textContent = formaPagto;
+            document.getElementById('vd-doc-assinatura').textContent = cliente;
+
+            document.getElementById('vd-passo-form').classList.add('hidden');
+            document.getElementById('vd-passo-doc').classList.remove('hidden');
+        }
+
+        function voltarParaEdicaoVendasDiretas() {
+            document.getElementById('vd-passo-doc').classList.add('hidden');
+            document.getElementById('vd-passo-form').classList.remove('hidden');
+        }
+
+        // LÓGICA DO CONTRATO E-COMMERCE (PSA)
+        function gerarDocumentoEcommerce() {
+            const vendedor = document.getElementById('ec-vendedor').value || 'ERICK';
+            const categoria = document.getElementById('ec-categoria').value || 'PF';
+            const cliente = document.getElementById('ec-cliente').value || 'TESTE';
+            const desconto = document.getElementById('ec-desconto').value || '5%';
+            const cpf = document.getElementById('ec-cpf').value || '123.206.446-79';
+            const ie = document.getElementById('ec-ie').value || '000000';
+            const tel = document.getElementById('ec-tel').value || '(31) 3299-0000';
+            const email = document.getElementById('ec-email').value || 'teste@mobi.com.br';
+            const cep = document.getElementById('ec-cep').value || '30494-170';
+            const estado = document.getElementById('ec-estado').value || 'MG';
+            const end = document.getElementById('ec-end').value || 'Avenida Raja Gabaglia, 2222';
+            const bairro = document.getElementById('ec-bairro').value || 'Estoril';
+            const cidade = document.getElementById('ec-cidade').value || 'Belo Horizonte';
+
+            const veiculo = document.getElementById('ec-veiculo').value || 'E-208 GT ELETRICO AT';
+            const qtde = document.getElementById('ec-qtde').value || '2';
+            const anomodel = document.getElementById('ec-anomodel').value || '2026/2026';
+            const opcionais = document.getElementById('ec-opcionais').value || 'PACK EDITION';
+            const cortesias = document.getElementById('ec-cortesias').value || 'TESTE';
+            const cor = document.getElementById('ec-cor').value || 'PRETO';
+            const precoPublico = document.getElementById('ec-preco-publico').value || '55.055,55';
+            const precoVenda = document.getElementById('ec-preco-venda').value || '5.000,00';
+            const dataCompra = document.getElementById('ec-data-compra').value;
+            const localEntrega = document.getElementById('ec-local-entrega').value || 'MAX VEÍCULOS';
+            const formaPagto = document.getElementById('ec-forma-pagto').value || 'À VISTA';
+
+            document.getElementById('ec-doc-data-cab').textContent = dataFormatadaCabecalho;
+            document.getElementById('ec-doc-cliente').textContent = cliente;
+            document.getElementById('ec-doc-categoria').textContent = categoria;
+            document.getElementById('ec-doc-vendedor').textContent = vendedor;
+            document.getElementById('ec-doc-desconto').textContent = desconto;
+
+            document.getElementById('ec-doc-veiculo').textContent = veiculo;
+            document.getElementById('ec-doc-qtde').textContent = qtde;
+            document.getElementById('ec-doc-anomodel').textContent = anomodel;
+            document.getElementById('ec-doc-opcionais').textContent = opcionais;
+            document.getElementById('ec-doc-cortesias').textContent = cortesias;
+            document.getElementById('ec-doc-cor').textContent = cor;
+            document.getElementById('ec-doc-precopublico').textContent = precoPublico;
+            document.getElementById('ec-doc-precovenda').textContent = precoVenda;
+
+            document.getElementById('ec-doc-fat-cliente').textContent = cliente;
+            document.getElementById('ec-doc-fat-cpf').textContent = cpf;
+            document.getElementById('ec-doc-fat-tel').textContent = tel;
+            document.getElementById('ec-doc-fat-ie').textContent = ie;
+            document.getElementById('ec-doc-fat-email').textContent = email;
+            document.getElementById('ec-doc-fat-end').textContent = `${end}, ${bairro} - ${cep}`;
+            document.getElementById('ec-doc-fat-cidade').textContent = cidade;
+            document.getElementById('ec-doc-fat-estado').textContent = estado;
+
+            document.getElementById('ec-doc-cli-nome2').textContent = cliente;
+            document.getElementById('ec-doc-datacompra').textContent = dataCompra ? dataCompra.split('-').reverse().join('/') : '13/10/2026';
+            document.getElementById('ec-doc-localentrega').textContent = localEntrega;
+            document.getElementById('ec-doc-formapagto').textContent = formaPagto;
+            document.getElementById('ec-doc-assinatura').textContent = cliente;
+
+            document.getElementById('ec-passo-form').classList.add('hidden');
+            document.getElementById('ec-passo-doc').classList.remove('hidden');
+        }
+
+        function voltarParaEdicaoEcommerce() {
+            document.getElementById('ec-passo-doc').classList.add('hidden');
+            document.getElementById('ec-passo-form').classList.remove('hidden');
         }
 
         // Abrir/Fechar Sidebar em dispositivos móveis
@@ -1031,7 +1789,16 @@
             if (!document.getElementById('form-pagamento').classList.contains('hidden')) {
                 return { element: document.getElementById('form-pagamento'), name: 'Autorizacao_Pagamento_Terceiro_Automax.pdf' };
             }
-            return { element: document.getElementById('form-checklist'), name: 'Checklist_Autuacoes_Automax.pdf' };
+            if (!document.getElementById('form-checklist').classList.contains('hidden')) {
+                return { element: document.getElementById('form-checklist'), name: 'Checklist_Autuacoes_Automax.pdf' };
+            }
+            if (!document.getElementById('form-contrato').classList.contains('hidden')) {
+                return { element: document.getElementById('form-contrato'), name: 'Contrato_Varejo_Automax.pdf' };
+            }
+            if (!document.getElementById('form-vendas-diretas').classList.contains('hidden')) {
+                return { element: document.getElementById('form-vendas-diretas'), name: 'Contrato_Vendas_Diretas_Automax.pdf' };
+            }
+            return { element: document.getElementById('form-ecommerce'), name: 'Contrato_Ecommerce_PSA_Automax.pdf' };
         }
 
         // Baixar PDF do Formulário Ativo
@@ -1039,11 +1806,11 @@
             const active = getActiveFormElement();
 
             const opt = {
-                margin: [4, 6, 4, 6],
-                filename: active.name,
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                margin:       [4, 6, 4, 6],
+                filename:     active.name,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
             html2pdf().set(opt).from(active.element).save();
@@ -1069,14 +1836,14 @@
         }
 
         document.querySelectorAll('.currency-mask').forEach(input => {
-            input.addEventListener('blur', function () {
+            input.addEventListener('blur', function() {
                 let val = parseCurrency(this.value);
                 if (val !== 0 || this.value.trim() !== '') {
                     this.value = val.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                 }
             });
 
-            input.addEventListener('input', function () {
+            input.addEventListener('input', function() {
                 if (this.classList.contains('calc-item')) {
                     calculateTotal();
                 }
@@ -1094,9 +1861,18 @@
                 });
                 active.element.querySelectorAll('textarea').forEach(tx => tx.value = '');
                 calculateTotal();
+                
+                if (active.element.id === 'form-contrato') {
+                    voltarParaEdicaoContrato();
+                }
+                if (active.element.id === 'form-vendas-diretas') {
+                    voltarParaEdicaoVendasDiretas();
+                }
+                if (active.element.id === 'form-ecommerce') {
+                    voltarParaEdicaoEcommerce();
+                }
             }
         }
     </script>
 </body>
-
 </html>
