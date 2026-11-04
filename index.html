@@ -28,10 +28,10 @@
         /* Estilos Globais de Input */
         .input-std {
             width: 100%;
-            padding: 6px 8px;
+            padding: 4px 6px;
             border: 1px solid var(--border);
             border-radius: 4px;
-            font-size: 13px;
+            font-size: 12px;
             transition: border-color 0.2s;
             background: #ffffff;
         }
@@ -85,13 +85,13 @@
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 5mm 8mm;
+                margin: 4mm 6mm;
             }
 
             body {
                 background: white !important;
                 padding: 0 !important;
-                font-size: 10px !important;
+                font-size: 9.5px !important;
             }
 
             .no-print,
@@ -127,7 +127,7 @@
                 border-radius: 0 !important;
                 padding: 1px 2px !important;
                 background: transparent !important;
-                font-size: 10px !important;
+                font-size: 9.5px !important;
             }
 
             .inline-input {
@@ -140,13 +140,13 @@
 
             textarea {
                 border: 1px solid #666 !important;
-                height: 32px !important;
+                height: 28px !important;
             }
 
             .checkbox-grid {
                 background: white !important;
                 border: 1px solid #aaa !important;
-                padding: 4px 8px !important;
+                padding: 2px 4px !important;
             }
 
             .page-break-avoid {
@@ -671,7 +671,7 @@
                 </div>
             </div>
 
-            <!-- FORMULÁRIO 3: AUTORIZAÇÃO PARA PAGAMENTO PARCIAL DE VEÍCULO DE TERCEIRO (SEM BORDA EXTERNA) -->
+            <!-- FORMULÁRIO 3: AUTORIZAÇÃO PARA PAGAMENTO PARCIAL DE VEÍCULO DE TERCEIRO -->
             <div id="form-pagamento" class="form-page hidden w-full max-w-[210mm] bg-white p-6 md:p-8">
                 <!-- Cabeçalho -->
                 <div class="flex items-center space-x-4 border-b-2 border-slate-900 pb-3 mb-6">
@@ -748,52 +748,51 @@
                 </div>
             </div>
 
-
-            <!-- FORMULÁRIO 4: CHECKLIST AUTUAÇÕES E PENDÊNCIAS DE VEÍCULO -->
+            <!-- FORMULÁRIO 4: CHECKLIST AUTUAÇÕES E PENDÊNCIAS DE VEÍCULO (AJUSTADO PARA 1 PÁGINA A4) -->
             <div id="form-checklist"
-                class="form-page hidden w-full max-w-[210mm] bg-white p-6 md:p-8 rounded-lg shadow-md border border-gray-200">
+                class="form-page hidden w-full max-w-[210mm] bg-white p-5 md:p-6 rounded-lg shadow-md border border-gray-200 text-xs">
                 <!-- Cabeçalho -->
-                <div class="flex items-center justify-between border-b-2 border-slate-900 pb-3 mb-4">
+                   <div class="flex items-center justify-between border-b-2 border-slate-900 pb-3 mb-4">
                     <div class="flex items-center space-x-3">
                         <img src=".\logo.png" alt="Logo Grupo Automax" class="w-30 h-30 object-contain">
-                        <span class="font-extrabold text-slate-900 text-lg">CHECKLIST AUTUAÇOES AUTOMAX</span>
+                        <span class="font-extrabold text-slate-900 text-lg">CHECKLIST AUTUAÇÃO</span>
                     </div>
-                    <div class="flex items-center space-x-2 text-xs">
+                    <div class="flex items-center space-x-2 text-[11px]">
                         <span class="font-bold text-slate-700">DATA:</span>
-                        <input type="date" id="data-checklist" class="input-std text-center" style="width: 130px;">
+                        <input type="date" id="data-checklist" class="input-std text-center py-1" style="width: 125px;">
                     </div>
                 </div>
 
                 <!-- Identificação do Veículo -->
-                <div class="grid grid-cols-12 gap-3 mb-4 text-xs">
+                <div class="grid grid-cols-12 gap-2 mb-2.5">
                     <div class="col-span-6 md:col-span-4">
-                        <label class="block font-bold text-slate-700 uppercase">PLACA:</label>
-                        <input type="text" class="input-std font-mono font-bold uppercase" placeholder="ABC1D23">
+                        <label class="block font-bold text-slate-700 uppercase text-[10px]">PLACA:</label>
+                        <input type="text" class="input-std font-mono font-bold uppercase py-1" placeholder="ABC1D23">
                     </div>
                     <div class="col-span-6 md:col-span-4">
-                        <label class="block font-bold text-slate-700 uppercase">VENDEDOR:</label>
-                        <input type="text" class="input-std uppercase" placeholder="NOME DO VENDEDOR">
+                        <label class="block font-bold text-slate-700 uppercase text-[10px]">VENDEDOR:</label>
+                        <input type="text" class="input-std uppercase py-1" placeholder="NOME DO VENDEDOR">
                     </div>
                     <div class="col-span-6 md:col-span-4">
-                        <label class="block font-bold text-slate-700 uppercase">UF:</label>
-                        <input type="text" class="input-std text-center uppercase" placeholder="MG">
+                        <label class="block font-bold text-slate-700 uppercase text-[10px]">UF:</label>
+                        <input type="text" class="input-std text-center uppercase py-1" placeholder="MG">
                     </div>
                     <div class="col-span-6 md:col-span-4">
-                        <label class="block font-bold text-slate-700 uppercase">ANO / MODELO:</label>
-                        <input type="text" class="input-std text-center" placeholder="2024 / 2025">
+                        <label class="block font-bold text-slate-700 uppercase text-[10px]">ANO / MODELO:</label>
+                        <input type="text" class="input-std text-center py-1" placeholder="2024 / 2025">
                     </div>
                     <div class="col-span-6 md:col-span-4">
-                        <label class="block font-bold text-slate-700 uppercase">COR:</label>
-                        <input type="text" class="input-std uppercase" placeholder="COR DO VEÍCULO">
+                        <label class="block font-bold text-slate-700 uppercase text-[10px]">COR:</label>
+                        <input type="text" class="input-std uppercase py-1" placeholder="COR DO VEÍCULO">
                     </div>
                     <div class="col-span-6 md:col-span-4">
-                        <label class="block font-bold text-slate-700 uppercase">MARCA / MODELO:</label>
-                        <input type="text" class="input-std uppercase" placeholder="EX: VW/SAVEIRO CD EX">
+                        <label class="block font-bold text-slate-700 uppercase text-[10px]">MARCA / MODELO:</label>
+                        <input type="text" class="input-std uppercase py-1" placeholder="EX: VW/SAVEIRO CD EX">
                     </div>
 
                     <!-- Combustível -->
                     <div
-                        class="col-span-12 border border-slate-200 p-2 rounded bg-slate-50 flex items-center space-x-6">
+                        class="col-span-12 border border-slate-200 p-1.5 rounded bg-slate-50 flex items-center space-x-5 text-[11px]">
                         <span class="font-bold text-slate-700 uppercase">COMBUSTÍVEL:</span>
                         <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
                                 class="rounded text-blue-600"> <span>GASOLINA</span></label>
@@ -807,24 +806,26 @@
                 </div>
 
                 <!-- Documentos / Impostos -->
-                <div class="border border-slate-300 rounded p-3 mb-4 text-xs">
-                    <h3 class="font-extrabold text-slate-900 border-b border-slate-300 pb-1 mb-2 uppercase">DOCUMENTOS /
-                        IMPOSTOS</h3>
-                    <div class="grid grid-cols-12 gap-3">
+                <div class="border border-slate-300 rounded p-2.5 mb-2.5 text-[11px]">
+                    <h3
+                        class="font-extrabold text-slate-900 border-b border-slate-300 pb-0.5 mb-1.5 uppercase text-[11px]">
+                        DOCUMENTOS / IMPOSTOS</h3>
+                    <div class="grid grid-cols-12 gap-2">
                         <div class="col-span-6 flex items-center space-x-2">
                             <span class="font-bold text-slate-700">CRLV (DUT) ANO:</span>
-                            <input type="text" class="input-std text-center" style="width: 80px;" placeholder="2026">
+                            <input type="text" class="input-std text-center py-0.5" style="width: 70px;"
+                                placeholder="2026">
                         </div>
-                        <div class="col-span-6 flex items-center space-x-4">
+                        <div class="col-span-6 flex items-center space-x-3">
                             <span class="font-bold text-slate-700">SEGURO OBRIGATÓRIO:</span>
                             <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
                                     class="rounded text-blue-600"> <span>PAGO</span></label>
                         </div>
                         <div class="col-span-12 flex items-center space-x-2">
                             <span class="font-bold text-slate-700">OBS SEGURO:</span>
-                            <input type="text" class="input-std flex-1" placeholder="Observações do seguro...">
+                            <input type="text" class="input-std flex-1 py-0.5" placeholder="Observações do seguro...">
                         </div>
-                        <div class="col-span-12 flex flex-wrap items-center gap-3 border-t border-slate-100 pt-2">
+                        <div class="col-span-12 flex flex-wrap items-center gap-2 border-t border-slate-100 pt-1.5">
                             <span class="font-bold text-slate-700">IPVA PAGO:</span>
                             <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
                                     class="rounded text-blue-600"> <span>1ª</span></label>
@@ -834,96 +835,99 @@
                                     class="rounded text-blue-600"> <span>3ª</span></label>
                             <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
                                     class="rounded text-blue-600"> <span>TOTAL</span></label>
-                            <span class="font-bold text-slate-700 ml-4">OBS IPVA:</span>
-                            <input type="text" class="input-std flex-1" style="min-width: 120px;"
+                            <span class="font-bold text-slate-700 ml-3">OBS IPVA:</span>
+                            <input type="text" class="input-std flex-1 py-0.5" style="min-width: 100px;"
                                 placeholder="Ex: 2026">
                         </div>
-                        <div class="col-span-12 flex items-center space-x-3 border-t border-slate-100 pt-2">
+                        <div class="col-span-12 flex items-center space-x-2 border-t border-slate-100 pt-1.5">
                             <span class="font-bold text-slate-700">TAXA DE LICENCIAMENTO:</span>
                             <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
                                     class="rounded text-blue-600"> <span>PAGO</span></label>
-                            <span class="font-bold text-slate-700 ml-4">OBS LICENCIAMENTO:</span>
-                            <input type="text" class="input-std flex-1" placeholder="Ex: 2026">
+                            <span class="font-bold text-slate-700 ml-3">OBS LICENCIAMENTO:</span>
+                            <input type="text" class="input-std flex-1 py-0.5" placeholder="Ex: 2026">
                         </div>
                     </div>
                 </div>
 
                 <!-- Multa / Autuação -->
-                <div class="border border-slate-300 rounded p-3 mb-4 text-xs">
-                    <h3 class="font-extrabold text-slate-900 border-b border-slate-300 pb-1 mb-2 uppercase">MULTA /
-                        AUTUAÇÃO</h3>
-                    <div class="grid grid-cols-12 gap-2">
+                <div class="border border-slate-300 rounded p-2.5 mb-2.5 text-[11px]">
+                    <h3
+                        class="font-extrabold text-slate-900 border-b border-slate-300 pb-0.5 mb-1.5 uppercase text-[11px]">
+                        MULTA / AUTUAÇÃO</h3>
+                    <div class="grid grid-cols-12 gap-1.5">
                         <div class="col-span-12 md:col-span-6 flex items-center space-x-2">
-                            <span class="font-bold text-slate-700 w-24">PREFEITURA:</span>
-                            <input type="text" class="input-std flex-1" placeholder="Ex: 01 AUTUAÇÃO R$ 130,16">
+                            <span class="font-bold text-slate-700 w-20">PREFEITURA:</span>
+                            <input type="text" class="input-std flex-1 py-0.5" placeholder="Ex: 01 AUTUAÇÃO R$ 130,16">
                         </div>
                         <div class="col-span-12 md:col-span-6 flex items-center space-x-2">
-                            <span class="font-bold text-slate-700 w-24">DNIT:</span>
-                            <input type="text" class="input-std flex-1" placeholder="NADA CONSTA / DETALHES">
+                            <span class="font-bold text-slate-700 w-20">DNIT:</span>
+                            <input type="text" class="input-std flex-1 py-0.5" placeholder="NADA CONSTA / DETALHES">
                         </div>
                         <div class="col-span-12 md:col-span-6 flex items-center space-x-2">
-                            <span class="font-bold text-slate-700 w-24">PRF:</span>
-                            <input type="text" class="input-std flex-1" placeholder="NADA CONSTA / DETALHES">
+                            <span class="font-bold text-slate-700 w-20">PRF:</span>
+                            <input type="text" class="input-std flex-1 py-0.5" placeholder="NADA CONSTA / DETALHES">
                         </div>
                         <div class="col-span-12 md:col-span-6 flex items-center space-x-2">
-                            <span class="font-bold text-slate-700 w-24">DER:</span>
-                            <input type="text" class="input-std flex-1" placeholder="NADA CONSTA / DETALHES">
+                            <span class="font-bold text-slate-700 w-20">DER:</span>
+                            <input type="text" class="input-std flex-1 py-0.5" placeholder="NADA CONSTA / DETALHES">
                         </div>
                         <div class="col-span-12 md:col-span-6 flex items-center space-x-2">
-                            <span class="font-bold text-slate-700 w-24">RENAINF:</span>
-                            <input type="text" class="input-std flex-1" placeholder="NADA CONSTA / DETALHES">
+                            <span class="font-bold text-slate-700 w-20">RENAINF:</span>
+                            <input type="text" class="input-std flex-1 py-0.5" placeholder="NADA CONSTA / DETALHES">
                         </div>
                     </div>
                 </div>
 
                 <!-- Restrições -->
-                <div class="border border-slate-300 rounded p-3 mb-4 text-xs">
-                    <h3 class="font-extrabold text-slate-900 border-b border-slate-300 pb-1 mb-2 uppercase">RESTRIÇÕES
-                    </h3>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mb-3">
-                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>RESERVA DE ALIENAÇÃO / DOMÍNIO</span></label>
-                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox"
+                <div class="border border-slate-300 rounded p-2.5 mb-2.5 text-[11px]">
+                    <h3
+                        class="font-extrabold text-slate-900 border-b border-slate-300 pb-0.5 mb-1.5 uppercase text-[11px]">
+                        RESTRIÇÕES</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-1.5 mb-2">
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
+                                class="rounded text-blue-600"> <span>RESERVA / DOMÍNIO</span></label>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
                                 class="rounded text-blue-600"> <span>ALIENAÇÃO FIDUCIÁRIA</span></label>
-                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox"
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
                                 class="rounded text-blue-600"> <span>LEASING</span></label>
-                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox"
-                                class="rounded text-blue-600"> <span>COMUNICADO DE VENDA ATIVO</span></label>
-                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox"
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
+                                class="rounded text-blue-600"> <span>COMUNICADO DE VENDA</span></label>
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
                                 class="rounded text-blue-600"> <span>CONSÓRCIO</span></label>
-                        <label class="flex items-center space-x-1.5 cursor-pointer"><input type="checkbox"
+                        <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
                                 class="rounded text-blue-600"> <span
                                 class="font-bold text-green-700">NENHUMA</span></label>
                     </div>
                     <div class="grid grid-cols-12 gap-2">
                         <div class="col-span-6 flex items-center space-x-2">
                             <span class="font-bold text-slate-700">BANCO:</span>
-                            <input type="text" class="input-std flex-1" placeholder="NOME DO BANCO">
+                            <input type="text" class="input-std flex-1 py-0.5" placeholder="NOME DO BANCO">
                         </div>
                         <div class="col-span-6 flex items-center space-x-2">
                             <span class="font-bold text-slate-700">OBS RESTRIÇÃO:</span>
-                            <input type="text" class="input-std flex-1" placeholder="OBSERVAÇÕES ADICIONAIS">
+                            <input type="text" class="input-std flex-1 py-0.5" placeholder="OBSERVAÇÕES ADICIONAIS">
                         </div>
                     </div>
                 </div>
 
                 <!-- Dados Adicionais & Despachante Responsável -->
-                <div class="border border-slate-300 rounded p-3 mb-4 text-xs space-y-3">
-                    <div class="grid grid-cols-12 gap-3">
+                <div class="border border-slate-300 rounded p-2.5 mb-2.5 text-[11px] space-y-2">
+                    <div class="grid grid-cols-12 gap-2">
                         <div class="col-span-6 flex items-center space-x-2">
                             <span class="font-bold text-slate-700">CLIENTE:</span>
-                            <input type="text" class="input-std flex-1 uppercase" placeholder="NOME DO CLIENTE">
+                            <input type="text" class="input-std flex-1 uppercase py-0.5" placeholder="NOME DO CLIENTE">
                         </div>
                         <div class="col-span-6 flex items-center space-x-2">
                             <span class="font-bold text-slate-700">VEÍCULO:</span>
-                            <input type="text" class="input-std flex-1 uppercase" placeholder="NOME / PLACA DO VEÍCULO">
+                            <input type="text" class="input-std flex-1 uppercase py-0.5"
+                                placeholder="NOME / PLACA DO VEÍCULO">
                         </div>
                     </div>
-                    <div class="border-t border-slate-200 pt-2">
+                    <div class="border-t border-slate-200 pt-1.5">
                         <span class="font-bold text-slate-700 block mb-1">DESPACHANTE RESPONSÁVEL:</span>
-                        <div class="flex flex-wrap items-center gap-4">
+                        <div class="flex flex-wrap items-center gap-3">
                             <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
-                                    class="rounded text-blue-600"> <span>LÉONARDO</span></label>
+                                    class="rounded text-blue-600"> <span>LÉO</span></label>
                             <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
                                     class="rounded text-blue-600"> <span>DANIEL</span></label>
                             <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
@@ -933,18 +937,19 @@
                             <div class="flex items-center space-x-1 flex-1">
                                 <label class="flex items-center space-x-1 cursor-pointer"><input type="checkbox"
                                         class="rounded text-blue-600"> <span>OUTRO:</span></label>
-                                <input type="text" class="input-std flex-1" placeholder="Nome do despachante">
+                                <input type="text" class="input-std flex-1 py-0.5" placeholder="Nome do despachante">
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Assinatura -->
-                <div class="mt-8 text-center page-break-avoid">
-                    <div class="w-80 mx-auto border-t border-slate-800 pt-1">
-                        <input type="text" class="input-std text-center font-bold uppercase border-none bg-transparent"
+                <div class="mt-4 text-center page-break-avoid">
+                    <div class="w-72 mx-auto border-t border-slate-800 pt-1">
+                        <input type="text"
+                            class="input-std text-center font-bold uppercase border-none bg-transparent py-0.5"
                             placeholder="NOME DO RESPONSÁVEL">
-                        <div class="text-[10px] text-slate-500">Assinatura do Despachante / Responsável</div>
+                        <div class="text-[9px] text-slate-500">Assinatura do Despachante / Responsável</div>
                     </div>
                 </div>
             </div>
@@ -1034,7 +1039,7 @@
             const active = getActiveFormElement();
 
             const opt = {
-                margin: [5, 8, 5, 8],
+                margin: [4, 6, 4, 6],
                 filename: active.name,
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, useCORS: true },
