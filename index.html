@@ -81,6 +81,28 @@
             border-radius: 2px;
         }
 
+        .form-page {
+            min-width: 0;
+        }
+
+        @media (max-width: 640px) {
+            .form-page {
+                padding: 1rem !important;
+            }
+
+            .input-std,
+            .inline-input,
+            select,
+            textarea {
+                font-size: 16px;
+            }
+
+            .inline-input {
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
         /* REGRAS DE IMPRESSÃO */
         @media print {
             @page {
@@ -168,7 +190,7 @@
 
     <!-- MENU LATERAL (SIDEBAR) -->
     <aside id="sidebar"
-        class="w-80 bg-slate-900 text-white min-h-screen flex flex-col no-print transition-all duration-300 fixed z-30">
+        class="w-80 max-w-[85vw] h-screen overflow-y-auto bg-slate-900 text-white min-h-screen flex flex-col no-print transition-transform duration-300 fixed inset-y-0 left-0 z-30 -translate-x-full lg:translate-x-0">
         <!-- Topo da Sidebar com a logo -->
         <div class="p-4 border-b border-slate-800 flex items-center justify-between">
             <div class="flex items-center space-x-2">
@@ -262,24 +284,28 @@
         </div>
     </aside>
 
+    <button id="sidebar-backdrop" type="button" aria-label="Fechar menu"
+        onclick="toggleSidebar()"
+        class="hidden fixed inset-0 z-20 bg-slate-950/50 lg:hidden"></button>
+
     <!-- CONTEÚDO PRINCIPAL -->
-    <div id="main-content" class="flex-1 lg:ml-64 transition-all duration-300 flex flex-col min-h-screen">
+    <div id="main-content" class="flex-1 lg:ml-80 transition-all duration-300 flex flex-col min-h-screen min-w-0">
 
         <!-- Barra Superior (Apenas Tela) -->
         <header id="top-bar"
-            class="bg-white border-b border-gray-200 px-6 py-3 flex justify-between items-center no-print sticky top-0 z-20 shadow-sm">
-            <div class="flex items-center space-x-3">
+            class="bg-white border-b border-gray-200 px-3 sm:px-6 py-3 flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center no-print sticky top-0 z-20 shadow-sm">
+            <div class="flex items-center space-x-3 min-w-0">
                 <button onclick="toggleSidebar()"
-                    class="p-2 rounded-md hover:bg-gray-100 text-gray-600 focus:outline-none">
+                    class="p-2 rounded-md hover:bg-gray-100 text-gray-600 focus:outline-none lg:hidden">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
-                <h2 id="page-title" class="text-base font-bold text-gray-800">Memorando Financeiro - Programação de
+                <h2 id="page-title" class="text-sm sm:text-base font-bold text-gray-800">Memorando Financeiro - Programação de
                     Pagamento</h2>
             </div>
-            <div class="flex items-center space-x-2">
+            <div class="flex flex-wrap justify-end items-center gap-2">
                 <button onclick="limparFormAtual()"
                     class="px-3 py-1.5 text-xs font-semibold text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-50 transition">
                     🗑️ Limpar
@@ -296,7 +322,7 @@
         </header>
 
         <!-- ÁREA DOS FORMULÁRIOS -->
-        <main class="flex-1 p-4 md:p-6 flex justify-center items-start">
+        <main class="flex-1 min-w-0 p-3 sm:p-4 md:p-6 flex justify-center items-start">
 
             <!-- FORMULÁRIO 1: MEMORANDO FINANCEIRO -->
             <div id="form-memorando"
@@ -383,8 +409,8 @@
                 </div>
 
                 <!-- Tabela de Itens (A até P) -->
-                <div class="mb-4">
-                    <table class="w-full text-xs border-collapse border border-slate-300">
+                <div class="mb-4 overflow-x-auto">
+                    <table class="w-full min-w-[640px] text-xs border-collapse border border-slate-300">
                         <thead>
                             <tr class="bg-slate-900 text-white">
                                 <th class="border border-slate-700 px-2 py-1 text-left w-32">CATEGORIA</th>
@@ -1001,7 +1027,7 @@
                     <div class="mb-4 border border-slate-200 p-3 rounded bg-slate-50">
                         <label class="block font-bold text-slate-800 uppercase mb-1">Vendedor:</label>
                         <input type="text" id="cnt-vendedor" class="input-std font-semibold uppercase"
-                            placeholder="Nome do vendedor" placeholder="VENDEDOR>
+                            placeholder="Nome do vendedor">
                     </div>
 
                     <!-- Dados do Cliente -->
@@ -2104,7 +2130,7 @@
     <script>
         // Datas atuais automáticas (Hoje)
         const hoje = new Date();
-        const dataHojeStr = hoje.toISOString().split('T')[0];
+        const dataHojeStr = [hoje.getFullYear(), String(hoje.getMonth() + 1).padStart(2, '0'), String(hoje.getDate()).padStart(2, '0')].join('-');
 
         document.getElementById('data-autorizacao').value = dataHojeStr;
         document.getElementById('data-retirada').value = dataHojeStr;
@@ -2154,6 +2180,24 @@
         configurarBuscaCep('cnt-cliente-cep', 'cnt-cliente-end', 'cnt-cliente-bairro', 'cnt-cliente-cidade', 'cnt-cliente-uf');
         configurarBuscaCep('vd-cep', 'vd-end', 'vd-bairro', 'vd-cidade', 'vd-estado');
         configurarBuscaCep('ec-cep', 'ec-end', 'ec-bairro', 'ec-cidade', 'ec-estado');
+
+        function validarCamposObrigatorios(campos) {
+            const ausentes = campos.filter(campo => !document.getElementById(campo.id).value.trim());
+            if (ausentes.length) {
+                alert('Preencha os campos obrigatórios antes de gerar o contrato:\n\n' + ausentes.map(campo => `• ${campo.nome}`).join('\n'));
+                document.getElementById(ausentes[0].id).focus();
+                return false;
+            }
+
+            const emailInvalido = campos.find(campo => campo.id.endsWith('-email') && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById(campo.id).value.trim()));
+            if (emailInvalido) {
+                alert('Informe um e-mail válido para gerar o contrato.');
+                document.getElementById(emailInvalido.id).focus();
+                return false;
+            }
+
+            return true;
+        }
 
         // Alternar Formulários
         function showForm(formId) {
@@ -2208,12 +2252,36 @@
                 btnEc.className = activeClass;
                 title.textContent = "Contrato de Vendas E-Commerce (GROUPE PSA - Brasil)";
             }
+
+            if (window.innerWidth < 1024) {
+                fecharMenuMobile();
+            }
         }
 
         // LÓGICA DO CONTRATO VAREJO
         function gerarDocumentoContrato() {
+            if (!validarCamposObrigatorios([
+                { id: 'cnt-vendedor', nome: 'Vendedor' },
+                { id: 'cnt-cliente-nome', nome: 'Nome do cliente' },
+                { id: 'cnt-cliente-rg', nome: 'RG / Inscrição Estadual' },
+                { id: 'cnt-cliente-cpf', nome: 'CPF / CNPJ' },
+                { id: 'cnt-cliente-tel', nome: 'Telefone' },
+                { id: 'cnt-cliente-email', nome: 'E-mail' },
+                { id: 'cnt-cliente-cep', nome: 'CEP' },
+                { id: 'cnt-cliente-end', nome: 'Endereço' },
+                { id: 'cnt-cliente-num', nome: 'Número' },
+                { id: 'cnt-cliente-bairro', nome: 'Bairro' },
+                { id: 'cnt-cliente-cidade', nome: 'Cidade' },
+                { id: 'cnt-cliente-uf', nome: 'UF' },
+                { id: 'cnt-veiculo-nome', nome: 'Veículo' },
+                { id: 'cnt-veiculo-anomodel', nome: 'Ano / modelo' },
+                { id: 'cnt-veiculo-cor', nome: 'Cor do veículo' },
+                { id: 'cnt-veiculo-prazo', nome: 'Prazo de entrega' },
+                { id: 'cnt-pagto-valor', nome: 'Valor do veículo' }
+            ])) return;
+
             const vendedor = document.getElementById('cnt-vendedor').value ;
-            const cliNome = document.getElementById('cnt-cliente-nome').value ;
+            const cliNome = document.getElementById('cnt-cliente-nome').value.trim().toLocaleUpperCase('pt-BR');
             const cliRg = document.getElementById('cnt-cliente-rg').value ;
             const cliCpf = document.getElementById('cnt-cliente-cpf').value ;
             const cliTel = document.getElementById('cnt-cliente-tel').value ;
@@ -2289,9 +2357,30 @@
 
         // LÓGICA DO CONTRATO VENDAS DIRETAS (FCA)
         function gerarDocumentoVendasDiretas() {
+            if (!validarCamposObrigatorios([
+                { id: 'vd-vendedor', nome: 'Vendedor' },
+                { id: 'vd-categoria', nome: 'Categoria do cliente' },
+                { id: 'vd-cliente', nome: 'Nome do cliente' },
+                { id: 'vd-cpf', nome: 'CPF / CNPJ' },
+                { id: 'vd-tel', nome: 'Telefone' },
+                { id: 'vd-email', nome: 'E-mail' },
+                { id: 'vd-cep', nome: 'CEP' },
+                { id: 'vd-end', nome: 'Endereço' },
+                { id: 'vd-bairro', nome: 'Bairro' },
+                { id: 'vd-cidade', nome: 'Cidade' },
+                { id: 'vd-estado', nome: 'UF' },
+                { id: 'vd-veiculo', nome: 'Veículo' },
+                { id: 'vd-qtde', nome: 'Quantidade' },
+                { id: 'vd-anomodel', nome: 'Ano / modelo' },
+                { id: 'vd-cor', nome: 'Cor do veículo' },
+                { id: 'vd-preco-publico', nome: 'Preço público' },
+                { id: 'vd-preco-venda', nome: 'Preço de venda' },
+                { id: 'vd-data-compra', nome: 'Data da compra' }
+            ])) return;
+
             const vendedor = document.getElementById('vd-vendedor').value ;
             const categoria = document.getElementById('vd-categoria').value;
-            const cliente = document.getElementById('vd-cliente').value;
+            const cliente = document.getElementById('vd-cliente').value.trim().toLocaleUpperCase('pt-BR');
             const desconto = document.getElementById('vd-desconto').value ;
             const cpf = document.getElementById('vd-cpf').value ;
             const ie = document.getElementById('vd-ie').value;
@@ -2340,7 +2429,7 @@
             document.getElementById('vd-doc-fat-estado').textContent = estado;
 
             document.getElementById('vd-doc-cli-nome2').textContent = cliente;
-            document.getElementById('vd-doc-datacompra').textContent = dataCompra ? dataCompra.split('-').reverse().join('/') : '15/06/2026';
+            document.getElementById('vd-doc-datacompra').textContent = dataCompra ? dataCompra.split('-').reverse().join('/') : '-';
             document.getElementById('vd-doc-localentrega').textContent = localEntrega;
             document.getElementById('vd-doc-formapagto').textContent = formaPagto;
             document.getElementById('vd-doc-assinatura').textContent = cliente;
@@ -2356,9 +2445,30 @@
 
         // LÓGICA DO CONTRATO E-COMMERCE (PSA)
         function gerarDocumentoEcommerce() {
+            if (!validarCamposObrigatorios([
+                { id: 'ec-vendedor', nome: 'Vendedor' },
+                { id: 'ec-categoria', nome: 'Categoria do cliente' },
+                { id: 'ec-cliente', nome: 'Nome do cliente' },
+                { id: 'ec-cpf', nome: 'CPF / CNPJ' },
+                { id: 'ec-tel', nome: 'Telefone' },
+                { id: 'ec-email', nome: 'E-mail' },
+                { id: 'ec-cep', nome: 'CEP' },
+                { id: 'ec-end', nome: 'Endereço' },
+                { id: 'ec-bairro', nome: 'Bairro' },
+                { id: 'ec-cidade', nome: 'Cidade' },
+                { id: 'ec-estado', nome: 'UF' },
+                { id: 'ec-veiculo', nome: 'Veículo' },
+                { id: 'ec-qtde', nome: 'Quantidade' },
+                { id: 'ec-anomodel', nome: 'Ano / modelo' },
+                { id: 'ec-cor', nome: 'Cor do veículo' },
+                { id: 'ec-preco-publico', nome: 'Preço público' },
+                { id: 'ec-preco-venda', nome: 'Preço de venda' },
+                { id: 'ec-data-compra', nome: 'Data da compra' }
+            ])) return;
+
             const vendedor = document.getElementById('ec-vendedor').value ;
             const categoria = document.getElementById('ec-categoria').value;
-            const cliente = document.getElementById('ec-cliente').value ;
+            const cliente = document.getElementById('ec-cliente').value.trim().toLocaleUpperCase('pt-BR');
             const desconto = document.getElementById('ec-desconto').value;
             const cpf = document.getElementById('ec-cpf').value;
             const ie = document.getElementById('ec-ie').value;
@@ -2407,7 +2517,7 @@
             document.getElementById('ec-doc-fat-estado').textContent = estado;
 
             document.getElementById('ec-doc-cli-nome2').textContent = cliente;
-            document.getElementById('ec-doc-datacompra').textContent = dataCompra ? dataCompra.split('-').reverse().join('/') : '13/10/2026';
+            document.getElementById('ec-doc-datacompra').textContent = dataCompra ? dataCompra.split('-').reverse().join('/') : '-';
             document.getElementById('ec-doc-localentrega').textContent = localEntrega;
             document.getElementById('ec-doc-formapagto').textContent = formaPagto;
             document.getElementById('ec-doc-assinatura').textContent = cliente;
@@ -2424,7 +2534,13 @@
         // Abrir/Fechar Sidebar em dispositivos móveis
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('-translate-x-full');
+            const fechado = sidebar.classList.toggle('-translate-x-full');
+            document.getElementById('sidebar-backdrop').classList.toggle('hidden', fechado);
+        }
+
+        function fecharMenuMobile() {
+            document.getElementById('sidebar').classList.add('-translate-x-full');
+            document.getElementById('sidebar-backdrop').classList.add('hidden');
         }
 
         // 1. Array com os modelos ordenados alfabeticamente
